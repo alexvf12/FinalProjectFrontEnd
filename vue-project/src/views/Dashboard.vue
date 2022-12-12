@@ -5,11 +5,12 @@
 </template>
 
 <script>
-import {mapStore} from "pinia"
+import {mapStores} from "pinia"
+import userStore from "../stores/user.js"
 
 export default {
     computed: {
-        ...mapStore('')
+        ...mapStores(userStore)
     }
 }
 </script>
