@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         async login() {
-            const response = await this.userStore.signUp(this.email, this.password);
+            const response = await this.userStore.signIn(this.email, this.password);
         },
     },
 };

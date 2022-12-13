@@ -16,12 +16,3 @@ const pinia = createPinia()
   });
 createApp(App).use(pinia).use(router).mount("#app");
 
-
-
-
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
