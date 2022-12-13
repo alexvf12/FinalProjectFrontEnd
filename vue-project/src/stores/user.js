@@ -38,10 +38,17 @@ export default defineStore("user", {
 
       });
 
-      if (error) throw error;
+      if (error) {
+        throw error;
+      }
 
-      if (user) this.user = user;
-
+      if (user) {
+        this.user = user;
+      
+      return{
+        status: 0,
+      };
+    }
     },
 
     persist: {
