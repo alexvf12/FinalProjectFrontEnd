@@ -1,18 +1,18 @@
 <template>
    <div>
       <h1>Sign up for FREE</h1>
-      <form @submit.prevent="login" name="myForm" action="" onsubmit="" method="post">
+      <form @submit.prevent="signup()" name="myForm" action="" onsubmit="" method="post">
          <div>
             <label for="">FULL NAME</label>
-            <input type="text" placeholder=" " name="fname">
+            <input v-model="fullname" type="text" placeholder=" " name="fname">
          </div>
          <div>
             <label for="">EMAIL</label>
-            <input type="email" placeholder=" " name="femail">
+            <input v-model="email" type="email" placeholder=" " name="femail">
          </div>
          <div>
             <label form="">PASSWORD</label>
-            <input type="password" placeholder="" name="fpassword">
+            <input v-model="password" type="password" placeholder="" name="fpassword">
          </div>
          <input type="checkbox">I agree to the <span>Terms of Service</span> and <span>Privacy Policy</span>
          <button>CREATE ACCOUNT</button>
@@ -29,12 +29,19 @@ import { mapStores } from "pinia";
 import userStore from "../stores/user.js";
 
 export default {
+   data() {
+      return {
+         fullname: "",
+         email: "",
+         password: "",
+      }
+   },
    computed: {
       ...mapStores(userStore),
    },
    methods: {
-      async login() {
-         const response = await this.userStore.signUp();
+      async signup() {
+         const response = await this.userStore.signUp(this.email, this.password);
       },
    },
 };

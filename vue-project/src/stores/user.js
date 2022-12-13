@@ -32,9 +32,9 @@ export default defineStore("user", {
 
       const { user, error } = await supabase.auth.signUp({
 
-        email: "email@example.com",
+        email: email,
 
-        password: "somepassword",
+        password: password,
 
       });
 
