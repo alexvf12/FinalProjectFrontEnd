@@ -1,6 +1,6 @@
 <template>
  <Nav />
- <Login />
+ <Login  />
  <SignUp />
  
 </template>
@@ -22,5 +22,6 @@ export default {
   computed: {
     ...mapStores(userStore),
   },
+
 };
 </script>

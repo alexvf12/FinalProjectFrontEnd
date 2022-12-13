@@ -8,6 +8,13 @@ import router from './router'
 
 import './assets/main.css'
 
+const pinia = createPinia()
+  .use(piniaPersist)
+  .use(({ store }) => {
+    store.$router = markRaw(router);
+  });
+createApp(App).use(pinia).use(router).mount("#app");
+
 
 
 
