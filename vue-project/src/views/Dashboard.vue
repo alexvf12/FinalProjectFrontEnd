@@ -1,16 +1,14 @@
 <template>
-    <div>
-        
-    </div>
+  <div></div>
 </template>
 
 <script>
-import {mapStores} from "pinia"
-import userStore from "../stores/user.js"
+import { mapStores } from "pinia";
+import userStore from "../stores/user.js";
 
 export default {
-    computed: {
-        ...mapStores(userStore)
-    }
-}
+  computed: {
+    ...mapStores(userStore),
+  },
+};
 </script>
