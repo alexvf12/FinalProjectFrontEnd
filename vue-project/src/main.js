@@ -1,6 +1,6 @@
-import { createApp } from 'vue'
+import { createApp, markRaw } from 'vue';
 import piniaPersist from "pinia-plugin-persist";
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
