@@ -1,5 +1,5 @@
 <template>
- <nav>
+ <nav >
     <div>
       <img src="../../public/logo.png" alt="logo-tool" width="350"/>
     </div>
@@ -13,3 +13,6 @@
 <script>
 
 </script>
+<style>
+
+</style>

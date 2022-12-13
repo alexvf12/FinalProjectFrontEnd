@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-dark text-danger">
+    <div class="">
     <h1>Log In</h1>
- <form name="myForm" id="form" action="" onsubmit="" method="post">
+ <form v-model="" name="myForm" id="form" action="" onsubmit="" method="post">
  <div>
  <label for="">USER</label>
  <input type="text" placeholder="Enter your email" name="fname" id="">
@@ -15,6 +15,7 @@
  <input type="checkbox">Remember me 
  <button>LOG IN</button>
  </form>
+
  <hr>
  <p>No account?</p>
  <a href="">Sign up for free</a>

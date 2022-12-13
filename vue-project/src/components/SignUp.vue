@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-dark text-danger">
+    <div>
     <h1>Sign up for FREE</h1>
  <form name="myForm" id="form" action="" onsubmit="" method="post">
  <div>
