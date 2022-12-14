@@ -16,7 +16,6 @@
 <script></script>
 <style scoped>
 .ul{
-  padding-right: 6rem;
   font-size: 12px;
   margin-top: 10px;
   margin-right: 5px;
