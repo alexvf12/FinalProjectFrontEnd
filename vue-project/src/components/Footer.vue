@@ -1,12 +1,34 @@
 <template>
-    <footer>
-    <ul class="d-flex flex-row justify-content-around list-unstyled">
-    <li><a href="">hello@tools.com</a></li>
-    <li><a href="">Facebook</a></li>
-    <li> <a href="">LinkedIn</a></li>
+    <footer class="text-light">
+    <ul class="d-flex flex-row justify-content-center list-unstyled">
+    <li><a class="enlace" href="">hello@tools.com</a></li>
+    <li><a class="enlace" href="">Facebook</a></li>
+    <li> <a class="enlace" href="">LinkedIn</a></li>
     </ul>
 <div>
-    <p>© 2011-2022 CodeKick AB. All rights reserved. | Terms of Service | Privacy Policy</p>
+    <p class="text-center text-dark">© 2011-2022 CodeKick AB. All rights reserved.</p>
+    <p class="text-center text-dark"> Terms of Service | Privacy Policy</p>
 </div>   
     </footer>
 </template>
+
+<script></script>
+
+<style scope>
+footer{
+    background-color: #FFE478;
+}
+ul{
+    font-size: 10px;
+
+}
+.enlace{
+    color: black;
+    text-decoration-line: none;
+}
+
+p{
+    font-size: 7px;
+}
+
+</style>
