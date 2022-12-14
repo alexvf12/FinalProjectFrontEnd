@@ -5,7 +5,8 @@
 
       <div class="ul">
         <ul class="d-flex flex-row list-unstyled ">
-          <li><button type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
+          <li><button @click=""
+ type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
           <li><button type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
         </ul>
       </div>
@@ -13,7 +14,16 @@
   </nav>
 </template>
 
-<script></script>
+<script>
+export default{
+ data(){
+  return{
+  }
+ },
+ 
+}
+
+</script>
 <style scoped>
 .ul{
   font-size: 12px;

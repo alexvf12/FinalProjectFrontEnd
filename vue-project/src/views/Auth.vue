@@ -1,5 +1,5 @@
 <template>
-  <Nav />
+  <Nav @login="showLogin()" />
  <Login  />
  <SignUp />
  <Footer />
@@ -24,6 +24,11 @@ export default {
   computed: {
     ...mapStores(userStore),
   },
+  methods:{
+    showLogin(){
+      
+    }
+  }
 
 };
 
