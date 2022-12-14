@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <input
+    <input 
       type="text"
       placeholder="Type a task..."
       class="input-group-text"

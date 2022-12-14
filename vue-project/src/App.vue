@@ -1,7 +1,8 @@
 <template>
 <Nav />
-<Footer />
 <RouterView />
+<Footer />
+
 </template>
 
 <script>

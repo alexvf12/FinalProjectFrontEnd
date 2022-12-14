@@ -25,14 +25,13 @@ export default defineStore("user", {
       if (error) {
         throw error;
       }
-console.log(data)
+      console.log(data);
       if (data) {
         this.user = data.user;
-        this.$router.push('/Dashboard'); 
+        this.$router.push("/Dashboard");
       }
-
     },
-    
+
     async signUp(email, password) {
       const { data, error } = await supabase.auth.signUp({
         email: email,
@@ -43,20 +42,17 @@ console.log(data)
       if (error) {
         throw error;
       }
-
-     
     },
+  },
+  persist: {
+    enabled: true,
 
-    persist: {
-      enabled: true,
+    strategies: [
+      {
+        key: "user",
 
-      strategies: [
-        {
-          key: "user",
-
-          storage: localStorage,
-        },
-      ],
-    },
+        storage: localStorage,
+      },
+    ],
   },
 });
