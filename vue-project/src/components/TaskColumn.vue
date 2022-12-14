@@ -1,16 +1,16 @@
 <template>
 <div class=" divGeneral d-flex flex-column align-items-center ">
-<div class="bg-light mt-5">
+<div class="divIndividual1  mt-5 w-75 text-center">
    <h4 class="text-center">To-do list</h4> 
    <hr>
    <input type="text" placeholder="Type a task..." class="input-group-text" id="inputGroup-sizing-default"><button type="button" >Add new task</button>
 </div>
-<div class="bg-light mt-5 ">
+<div class="divIndividual2 bg-light mt-5 w-75 text-center">
    <h4 class="text-center">Doing</h4> 
    <hr>
    <input type="text" placeholder="Type a task..." class="input-group-text" id="inputGroup-sizing-default"><button type="button" >Add new task</button>
 </div>
-<div class="bg-light mt-5 mb-5">
+<div class="divIndividual3 bg-light mt-5 mb-5 w-75 text-center">
    <h4 class="text-center">Done</h4> 
    <hr>
    <input type="text" placeholder="Type a task..." class="input-group-text" id="inputGroup-sizing-default"><button type="button" > Add new task</button>
@@ -29,7 +29,8 @@ button{
     margin: 10px;
     border-radius: 50px;
     border: none;
-    background-color:#78FFE4;
+    background-color:#282a2aac;
+    color: white;
     
     
 }
@@ -45,10 +46,26 @@ hr{
 
 input{
     margin-top: 10px;
+    width: 100%;
+    border: none;
+    background-color:;
 }
 
 .divGeneral{
-    background-color: #ffe478;
+    background: #f1f7fe;
+
+}
+.divIndividual1{
+    background-color: white;
+    box-shadow: 0 0 2em #c0b3264a;
+}
+.divIndividual2{
+    background-color: white;
+    box-shadow: 0 0 2em #15658a6f;
+}
+.divIndividual3{
+    background-color: white;
+    box-shadow: 0 0 2em #d55ac556;
 }
    
     
