@@ -9,7 +9,7 @@
          <div class="email">
             <label for="name">Full name</label>
             <div>
-               <ion-icon name="mail-outline"></ion-icon>
+               <ion-icon name="at-outline"></ion-icon>
                <input v-model="fullname" type="text" placeholder=" Username" name="name">
             </div>
          </div>

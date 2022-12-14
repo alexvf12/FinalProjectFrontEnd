@@ -5,7 +5,6 @@
  <taskColumn />
  <taskItem />
  <Footer/>
- 
 </template>
 
 <script>
