@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <Nav @login="showLogin()" />
-=======
-  
->>>>>>> origin/main
  <Login  />
  <SignUp />
  
