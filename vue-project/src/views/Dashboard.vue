@@ -4,6 +4,7 @@
  <SignUp />
  <taskColumn />
  <taskItem />
+ <Footer/>
  
 </template>
 
@@ -11,13 +12,15 @@
 import Nav from "../components/Nav.vue";
 import taskColumn from "../components/TaskColumn.vue";
 import taskItem from "../components/taskItem.vue";
+import Footer from "../components/Footer.vue";
 
 
 export default {
   components: {
     Nav,
     taskColumn,
-    taskItem
+    taskItem,
+    Footer
   },
   
 
