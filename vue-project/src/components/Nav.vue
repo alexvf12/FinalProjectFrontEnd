@@ -5,9 +5,8 @@
 
       <div class="ul">
         <ul class="d-flex flex-row list-unstyled ">
-          <li><button @click=""
- type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
-          <li><button type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
+          <li><button @click="$emit('add2')" type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
+          <li><button @click="$emit('add')" type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
         </ul>
       </div>
     </div>
@@ -15,21 +14,20 @@
 </template>
 
 <script>
-export default{
- data(){
-  return{
-  }
- },
- 
+export default {
+  data() {
+    return {
+    }
+  },
+
 }
 
 </script>
 <style scoped>
-.ul{
+.ul {
   font-size: 12px;
   margin-top: 10px;
   margin-right: 5px;
 
 }
-
 </style>

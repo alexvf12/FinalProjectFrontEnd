@@ -1,9 +1,14 @@
 <template>
-   <div class="">
+   <div v-if="show" class="signModal">
 
       <form @submit.prevent="signup()" class="screen-1 signup" name="myForm" action="" onsubmit="" method="post">
+         <div class="d-flex justify-content-end">
+            <button class="btn shadow-none w-5" @click="$emit('close')">
+               <ion-icon name="close-outline"></ion-icon>
+            </button>
+         </div>
          <div class="d-flex justify-content-center">
-            <img class="w-75 mb-4" src="../../public/logo.png" alt="logo-tool"/>
+            <img class="w-50 mb-4" src="../../public/logo.png" alt="logo-tool" />
          </div>
          <h4 class="">SING UP FOR FREE</h4>
          <div class="email">
@@ -29,10 +34,11 @@
             </div>
          </div>
          <div class="d-flex">
-                <input class="mb-3 mx-2" type="checkbox" />
-                <span class="mb-3 size-xs">I agree to the <a href="">Terms of Service</a> and <a href="">Privacity Policy</a> .</span>
-            </div>
-         <button class="login w-50 align-self-center">Create account </button>
+            <input class="mb-3 mx-2" type="checkbox" />
+            <span class="mb-3 size-xxs">I agree to the <a href="">Terms of Service</a> and <a href="">Privacity
+                  Policy</a> .</span>
+         </div>
+         <button class="login align-self-center">Create account </button>
          <div class="footer"><span>Signup</span><span>Forgot Password?</span></div>
       </form>
    </div>
@@ -46,10 +52,11 @@ import userStore from "../stores/user.js";
 export default {
    data() {
       return {
-         fullname: "",
-         email: "",
-         password: "",
+
       }
+   },
+   props: {
+      show: Boolean
    },
    computed: {
       ...mapStores(userStore),
@@ -67,6 +74,15 @@ export default {
    font-family: "Poppins";
 }
 
+.signModal {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, .7);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .signup {
    display: flex;
    background: #dde5f4;
@@ -80,6 +96,8 @@ export default {
    flex-direction: column;
    border-radius: 30px;
    box-shadow: 0 0 2em #e6e9f9;
+   width: 85%;
+   height: 85vh;
    /* gap: 2em; */
 }
 
@@ -87,13 +105,13 @@ export default {
 .screen-1 .email {
    background: white;
    box-shadow: 0 0 2em #e6e9f9;
-   padding: 1em 2rem;
+   padding: 0.5em 2rem;
    display: flex;
    flex-direction: column;
-   gap: 0.5em;
+   gap: 0.2em;
    border-radius: 20px;
    color: #4d4d4d;
-   margin-bottom: 1.5rem;
+   margin-bottom: 1rem;
    margin-top: 0.5rem;
 }
 
@@ -112,20 +130,20 @@ export default {
 .screen-1 .password {
    background: white;
    box-shadow: 0 0 2em #e6e9f9;
-   padding: 1em 2rem;
+   padding: 0.5em 2rem;
    display: flex;
    flex-direction: column;
-   gap: 0.5em;
+   gap: 0.2em;
    border-radius: 20px;
    color: #4d4d4d;
-   margin-bottom: 1.5rem;
+   margin-bottom: 1rem;
    margin-top: 0.3rem;
 }
 
 .screen-1 .password input {
    outline: none;
    border: none;
-   width: 85%;
+   width: 80%;
 }
 
 .screen-1 .password ion-icon {
@@ -135,7 +153,7 @@ export default {
 
 .screen-1 .email ion-icon {
    color: #4d4d4d;
-   margin-bottom: -0.1em;
+   margin-bottom: -0.2em;
 }
 
 .screen-1 .login {
@@ -161,6 +179,8 @@ export default {
 button {
    cursor: pointer;
    margin-bottom: 1rem;
+   width: 50%;
+   font-size: 0.7rem;
 }
 
 .email {
@@ -168,12 +188,33 @@ button {
    justify-content: flex-start;
 }
 
-h4{
+h4 {
    font-size: 1.2rem;
    margin-left: 0.5rem;
 }
 
-.size-xs{
+input {
+   font-size: 0.9rem;
+}
+
+label {
+   font-size: 0.9rem;
+}
+
+.size-xs {
    font-size: x-small;
+}
+
+.size-l {
+   font-size: x-large;
+}
+
+.size-xxs {
+   font-size: 0.58rem;
+}
+
+.w-5 {
+   width: 5%;
+   height: 1vh;
 }
 </style>
