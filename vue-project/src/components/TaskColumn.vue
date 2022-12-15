@@ -3,35 +3,28 @@
     <div class="divIndividual1 mt-5 w-75 text-center">
       <h4 class="text-center">To-do list</h4>
       <hr />
-      <input
-        v-model="title"
-        type="text"
-        placeholder="Type a task..."
-        class="input-group-text"
-        id="inputGroup-sizing-default"
-      /><button @click="addNewTasks" type="button">Add new task</button>
+      <!-- <taskItem :toDo="tasksStore.filteredStatus0"/> -->
+      <div v-for="task in tasksStore.filteredStatus0">
+        {{ task.title }} <button @click="modifiedTask()"><ion-icon name="pencil-outline"></ion-icon></button>
+      </div>
+      <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
+        id="inputGroup-sizing-default" /><button @click="addNewTasks" type="button">Add new task</button>
     </div>
     <div class="divIndividual2 bg-light mt-5 w-75 text-center">
       <h4 class="text-center">Doing</h4>
       <hr />
-      <input
-        v-model="title2"
-        type="text"
-        placeholder="Type a task..."
-        class="input-group-text"
-        id="inputGroup-sizing-default"
-      /><button @click="addNewTasks2" type="button">Add new task</button>
+      <div v-for="task in tasksStore.filteredStatus1">
+        {{ task.title }}
+      </div> <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
+        id="inputGroup-sizing-default" /><button @click="addNewTasks2" type="button">Add new task</button>
     </div>
     <div class="divIndividual3 bg-light mt-5 mb-5 w-75 text-center">
       <h4 class="text-center">Done</h4>
       <hr />
-      <input
-        v-model="title3"
-        type="text"
-        placeholder="Type a task..."
-        class="input-group-text"
-        id="inputGroup-sizing-default"
-      /><button @click="addNewTasks3" type="button">Add new task</button>
+      <div v-for="task in tasksStore.filteredStatus2">
+        {{ task.title }}
+      </div> <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
+        id="inputGroup-sizing-default" /><button @click="addNewTasks3" type="button">Add new task</button>
     </div>
   </div>
 </template>
@@ -40,6 +33,8 @@
 import { mapStores } from "pinia";
 import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
+import taskItem from "./taskItem.vue";
+
 
 export default {
   data() {
@@ -51,6 +46,9 @@ export default {
       status2: 1,
       status3: 2,
     };
+  },
+  components: {
+    taskItem,
   },
   computed: {
     ...mapStores(tasksStore),
@@ -64,6 +62,7 @@ export default {
         this.title,
         this.status
       );
+      this.title = ""
     },
     async addNewTasks2() {
       const response = await this.tasksStore.createTask(
@@ -71,6 +70,7 @@ export default {
         this.title2,
         this.status2
       );
+      this.title2 = ""
     },
     async addNewTasks3() {
       const response = await this.tasksStore.createTask(
@@ -78,8 +78,14 @@ export default {
         this.title3,
         this.status3
       );
+      this.title3 = ""
     },
   },
+  mounted() {
+    this.tasksStore.fetchTasks()
+    this.tasksStore.createTask(this.task)
+    this.tasksStore.modifiedTask()
+  }
 };
 </script>
 
@@ -92,6 +98,7 @@ button {
   background-color: #282a2aac;
   color: white;
 }
+
 h4 {
   margin-top: 10px;
 }
@@ -109,14 +116,17 @@ input {
 .divGeneral {
   background: #f1f7fe;
 }
+
 .divIndividual1 {
   background-color: white;
   box-shadow: 0 0 2em #c0b3264a;
 }
+
 .divIndividual2 {
   background-color: white;
   box-shadow: 0 0 2em #15658a6f;
 }
+
 .divIndividual3 {
   background-color: white;
   box-shadow: 0 0 2em #d55ac556;

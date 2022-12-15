@@ -1,8 +1,7 @@
 <template>
 
- <taskColumn />
- <taskItem />
- 
+  <taskColumn />
+
 </template>
 
 <script>
@@ -15,7 +14,7 @@ export default {
     taskColumn,
     taskItem,
   },
-  
+
 
 };
 </script>

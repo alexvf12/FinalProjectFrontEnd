@@ -1,15 +1,39 @@
 <template>
-  <div>
-    
-    <input 
-      type="text"
-      placeholder="Type a task..."
-      class="input-group-text"
-      id="inputGroup-sizing-default"
-    />
-  </div>
+  <!-- <div v-for="task in tasksStore.filteredStatus0">
+    {{task.title}}
+     <p v-if="task.status === 0"> {{ task.title }}
+    </p>
+    <p v-if="task.status2 === 1"> {{ task.title2 }}
+    </p>
+    <p v-if="task.status3 === 2"> {{ task.title3 }}
+    </p>
+  </div> -->
 </template>
 
-<script></script>
+<script>
+import { mapStores } from "pinia";
+import tasksStore from "../stores/task.js";
+import userStore from "../stores/user.js";
 
-<style scoped></style>
+export default {
+  data() {
+    return {
+    }
+  },
+  computed: {
+    ...mapStores(tasksStore, userStore),
+  },
+  async mounted() {
+    this.tasksStore.fetchTasks()
+    await this.tasksStore.createTask({
+    })
+  },
+  props: {
+    toDo: Array,
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
