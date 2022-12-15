@@ -31,11 +31,22 @@ export default defineStore("tasks", {
 
       this.fetchTasks();
     },
-    async modifiedTask(){
+    async modifiedTask(title, id){
       const {error} = await supabase
       .from("tasks")
-      .update({title:"australia"})
-      .eq("id",1);
+      .update({title:title})
+      .eq("id",id);
+
+      this.fetchTasks();
+    },
+    async deleteItem(id){
+      const { error } = await supabase
+      .from('tasks')
+      .delete()
+      .eq('id', id)
+
+      this.fetchTasks();
+
     }
   },
   getters:{

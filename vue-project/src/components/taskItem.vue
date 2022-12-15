@@ -1,13 +1,22 @@
 <template>
-  <!-- <div v-for="task in tasksStore.filteredStatus0">
-    {{task.title}}
-     <p v-if="task.status === 0"> {{ task.title }}
-    </p>
-    <p v-if="task.status2 === 1"> {{ task.title2 }}
-    </p>
-    <p v-if="task.status3 === 2"> {{ task.title3 }}
-    </p>
-  </div> -->
+  <div v-if="editing">
+    <input v-model="task.title" type="text">
+    <button @click="edit(task.id)">enviar</button>
+  </div>
+  <div v-else class="d-flex">
+    <div class="w-65 d-flex justify-content-end">
+      <h5>
+        {{ task.title }}
+      </h5>
+    </div>
+    <div class="w-50 d-flex justify-content-end">
+      <button @click="editing = !editing"><ion-icon name="pencil-outline"></ion-icon></button>
+      <button @click="deleteElement(task.id)"><ion-icon name="trash-outline"></ion-icon></button>
+    </div>
+
+
+  </div>
+
 </template>
 
 <script>
@@ -18,22 +27,29 @@ import userStore from "../stores/user.js";
 export default {
   data() {
     return {
+      editing: false
     }
   },
   computed: {
     ...mapStores(tasksStore, userStore),
   },
-  async mounted() {
-    this.tasksStore.fetchTasks()
-    await this.tasksStore.createTask({
-    })
+  methods: {
+    edit(id) {
+      this.tasksStore.modifiedTask(this.task.title, id)
+      this.editing = false
+    },
+    deleteElement(id) {
+      this.tasksStore.deleteItem(id)
+    }
   },
   props: {
-    toDo: Array,
-  }
+    task: Object,
+  },
 }
 </script>
 
 <style scoped>
-
+.w-65 {
+  width: 65%;
+}
 </style>

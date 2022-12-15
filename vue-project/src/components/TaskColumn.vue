@@ -3,27 +3,32 @@
     <div class="divIndividual1 mt-5 w-75 text-center">
       <h4 class="text-center">To-do list</h4>
       <hr />
-      <!-- <taskItem :toDo="tasksStore.filteredStatus0"/> -->
-      <div v-for="task in tasksStore.filteredStatus0">
+      <taskItem v-for="task in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task" />
+      <!-- <div v-for="task in tasksStore.filteredStatus0">
         {{ task.title }} <button @click="modifiedTask()"><ion-icon name="pencil-outline"></ion-icon></button>
-      </div>
+      </div> -->
+      
       <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
         id="inputGroup-sizing-default" /><button @click="addNewTasks" type="button">Add new task</button>
     </div>
     <div class="divIndividual2 bg-light mt-5 w-75 text-center">
       <h4 class="text-center">Doing</h4>
       <hr />
-      <div v-for="task in tasksStore.filteredStatus1">
+      <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" />
+      <!-- <div v-for="task in tasksStore.filteredStatus1">
         {{ task.title }}
-      </div> <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
+      </div> -->
+      <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
         id="inputGroup-sizing-default" /><button @click="addNewTasks2" type="button">Add new task</button>
     </div>
     <div class="divIndividual3 bg-light mt-5 mb-5 w-75 text-center">
       <h4 class="text-center">Done</h4>
       <hr />
-      <div v-for="task in tasksStore.filteredStatus2">
+      <!-- <div v-for="task in tasksStore.filteredStatus2">
         {{ task.title }}
-      </div> <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
+      </div>  -->
+      <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" />
+      <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
         id="inputGroup-sizing-default" /><button @click="addNewTasks3" type="button">Add new task</button>
     </div>
   </div>
