@@ -6,7 +6,7 @@
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
         <taskItem v-for="task in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task" draggable="true"
-          @dragstart="startDrag($event, item)" />
+          @dragstart="startDrag($event, task)" />
       </div>
 
       <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
@@ -16,9 +16,9 @@
       <h4 class="text-center">Doing</h4>
       <hr />
 
-      <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent></div>
+      <div style="height:50px" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent></div>
       <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" draggable="true"
-        @dragstart="startDrag($event, item)" />
+        @dragstart="startDrag($event, task)" />
     </div>
 
     <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
@@ -28,9 +28,9 @@
     <h4 class="text-center">Done</h4>
     <hr />
 
-    <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent></div>
+    <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent></div>
     <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" draggable="true"
-      @dragstart="startDrag($event, item)" />
+      @dragstart="startDrag($event, task)" />
   </div>
 
   <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
@@ -53,8 +53,8 @@ export default {
       status: 0,
       status2: 1,
       status3: 2,
-      startDrag,
-      onDrop,
+      
+      
     };
   },
   components: {
@@ -90,29 +90,21 @@ export default {
       );
       this.title3 = ""
     },
-  },
-  mounted() {
-    this.tasksStore.fetchTasks()
-    this.tasksStore.createTask(this.task)
-    this.tasksStore.modifiedTask()
-  },
-  setup() {
-    const startDrag = (event, task) => {
+    startDrag(event, task){
       console.log(task)
       event.dataTransfer.dropEffect = "move"
       event.dataTransfer.effectAllowed = "move"
-      event.dataTransfer.setData("itemID", this.userStore.user.id)
-    }
-    const onDrop = (event, status) => {
-        const itemID = event.dataTransfer.getData("itemID")
-        const item = this.tasks.value.find((item) => item.id == itemID)
-        item.status = status
-      }
-    return {
-      startDrag,
-      onDrop,
-    }
+      event.dataTransfer.setData("taskID", task.id)
+    },
+    onDrop(event, status){
+        const taskID = event.dataTransfer.getData("taskID")
+        this.tasksStore.modifiedStatus(status, taskID)
+      },
   },
+  mounted() {
+    this.tasksStore.fetchTasks()
+  },
+  
 };
 </script>
 
