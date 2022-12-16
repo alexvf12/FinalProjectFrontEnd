@@ -5,8 +5,10 @@
   </div>
   <div v-else class="d-flex">
     <div class="w-65 d-flex justify-content-end">
-      <h5>
+      <h5 >
+        
         {{ task.title }}
+
       </h5>
     </div>
     <div class="w-50 d-flex justify-content-end">

@@ -3,7 +3,10 @@
     <div class="divIndividual1 mt-5 w-75 text-center">
       <h4 class="text-center">To-do list</h4>
       <hr />
-      <taskItem v-for="task in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task" />
+      <div @drop="onDrop($event, 0)"
+      @dragenter.prevent
+      @dragover.prevent></div>
+      <taskItem v-for="task in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task" draggable="true" @dragstart="startDrag($event, task)"/>
       <!-- <div v-for="task in tasksStore.filteredStatus0">
         {{ task.title }} <button @click="modifiedTask()"><ion-icon name="pencil-outline"></ion-icon></button>
       </div> -->
@@ -14,7 +17,7 @@
     <div class="divIndividual2 bg-light mt-5 w-75 text-center">
       <h4 class="text-center">Doing</h4>
       <hr />
-      <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" />
+      <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" draggable="true" @dragstart="startDrag($event, task)"/>
       <!-- <div v-for="task in tasksStore.filteredStatus1">
         {{ task.title }}
       </div> -->
@@ -27,7 +30,7 @@
       <!-- <div v-for="task in tasksStore.filteredStatus2">
         {{ task.title }}
       </div>  -->
-      <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" />
+      <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" draggable="true" @dragstart="startDrag($event, task)"/>
       <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
         id="inputGroup-sizing-default" /><button @click="addNewTasks3" type="button">Add new task</button>
     </div>
@@ -50,6 +53,8 @@ export default {
       status: 0,
       status2: 1,
       status3: 2,
+      startDrag,
+      onDrop,
     };
   },
   components: {
@@ -85,6 +90,21 @@ export default {
       );
       this.title3 = ""
     },
+    dragElements(){
+     this.startDrag = (event,task)=>{
+        console.log(task)
+        event.dataTransfer.dropEffect = "move"
+        event.dataTransfer.effectAllowed = "move"
+        event.dataTransfer.setData("itemID", this.userStore.user.id)
+      }
+    },
+    onDrops(){
+      this.onDrop= (event, status)=>{
+        const itemID= event.dataTransfer.getData("itemID")
+        const item = this.tasks.value.find((task) => this.userStore.user.id == itemID)
+        item.status= status
+      }
+    }
   },
   mounted() {
     this.tasksStore.fetchTasks()
