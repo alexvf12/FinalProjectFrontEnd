@@ -1,9 +1,9 @@
 <template>
   <div v-if="editing">
     <input v-model="task.title" type="text">
-    <button @click="edit(task.id)">enviar</button>
+    <button @click="edit(task.id)"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
   </div>
-  <div v-else class="d-flex">
+  <div v-else class="d-flex contenedor-global">
     <div class="w-65 d-flex justify-content-end">
       <h5 >
         
@@ -11,10 +11,12 @@
 
       </h5>
     </div>
-    <div class="w-50 d-flex justify-content-end">
-      <button @click="editing = !editing"><ion-icon name="pencil-outline"></ion-icon></button>
-      <button @click="deleteElement(task.id)"><ion-icon name="trash-outline"></ion-icon></button>
+    <div class="w-50 d-flex justify-content-end ">
+      <button class="btn" @click="editing = !editing"> <ion-icon name="create-outline"></ion-icon></button>
+      <button class="btn" @click="deleteElement(task.id)"><ion-icon name="trash-outline"></ion-icon></button>
     </div>
+   
+
 
 
   </div>
@@ -53,5 +55,24 @@ export default {
 <style scoped>
 .w-65 {
   width: 65%;
+}
+
+h5{
+  font-size: 14px;
+
+}
+.contenedor-global{
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: rgba(1, 1, 1, 0.33);
+  border-width: 2px;
+  margin-bottom: 10px;
+  background-color: white;
+  
+}
+button{
+  border: 0;
+  background-color: none;
+
 }
 </style>

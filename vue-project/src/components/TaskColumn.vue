@@ -12,25 +12,27 @@
       <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
         id="inputGroup-sizing-default" /><button @click="addNewTasks" type="button">Add new task</button>
     </div>
-    <div class="divIndividual2 bg-light mt-5 w-75 text-center">
+    <div class="divIndividual2 mt-5 w-75 text-center">
       <h4 class="text-center">Doing</h4>
       <hr />
 
-      <div style="height:50px" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent></div>
+      <div  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
       <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" draggable="true"
         @dragstart="startDrag($event, task)" />
+      </div>
     
 
     <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
       id="inputGroup-sizing-default" /><button @click="addNewTasks2" type="button">Add new task</button>
     </div>
-  <div class="divIndividual3 bg-light mt-5 mb-5 w-75 text-center">
+  <div class="divIndividual3  mt-5 mb-5 w-75 text-center">
     <h4 class="text-center">Done</h4>
     <hr />
 
-    <div style="height:50px" @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent></div>
+    <div  @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
     <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" draggable="true"
       @dragstart="startDrag($event, task)" />
+    </div>
   
 
   <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
@@ -124,10 +126,17 @@ button {
 
 h4 {
   margin-top: 10px;
+
+
 }
 
 hr {
   margin: 5px 0;
+ background: black;
+ height: 3px;
+ margin-bottom: 15px;
+
+
 }
 
 input {
@@ -140,18 +149,9 @@ input {
   background: #f1f7fe;
 }
 
-.divIndividual1 {
-  background-color: white;
-  box-shadow: 0 0 2em #c0b3264a;
-}
 
-.divIndividual2 {
-  background-color: white;
-  box-shadow: 0 0 2em #15658a6f;
-}
 
-.divIndividual3 {
-  background-color: white;
-  box-shadow: 0 0 2em #d55ac556;
-}
+
+
+
 </style>
