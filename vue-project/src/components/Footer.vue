@@ -1,5 +1,5 @@
 <template>
-    <footer class="text-light">
+    <footer>
     <ul class="d-flex flex-row justify-content-center list-unstyled">
     <li><a class="enlace" href=""> <img src="../../public/email-logo.png" alt="logo-correo" width="20px"> hello@tools.com</a></li>
     <li><a class="enlace" href=""> <img src="../../public/facebook-logo.png" alt="logo-facebook" width="20px"> Facebook</a></li>
@@ -17,9 +17,11 @@
 <style scope>
 footer{
     background-color: #FFE478;
+    height: 10rem;
 }
 ul{
-    font-size: 10px;
+    font-size: 12px;
+    padding-top: 35px;
 
 }
 .enlace{
@@ -29,7 +31,7 @@ ul{
 }
 
 p{
-    font-size: 7px;
+    font-size: 10px;
 }
 
 </style>
