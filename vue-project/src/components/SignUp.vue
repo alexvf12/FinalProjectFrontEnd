@@ -38,7 +38,7 @@
             <span class="mb-3 size-xxs">I agree to the <a href="">Terms of Service</a> and <a href="">Privacity
                   Policy</a> .</span>
          </div>
-         <button class="login align-self-center">Create account </button>
+         <button @click="signup(); show=false" class="login align-self-center">Create account </button>
          <div class="footer"><span>Signup</span><span>Forgot Password?</span></div>
       </form>
    </div>

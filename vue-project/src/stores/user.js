@@ -42,7 +42,12 @@ export default defineStore("user", {
       if (error) {
         throw error;
       }
+     
     },
+    async logOut(){
+    const { error } = await supabase.auth.signOut()
+    this.user = null
+  }
   },
   persist: {
     enabled: true,

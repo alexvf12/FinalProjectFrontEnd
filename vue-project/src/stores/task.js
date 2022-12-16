@@ -40,7 +40,6 @@ export default defineStore("tasks", {
       this.fetchTasks();
     },
     async modifiedStatus(status, id){
-      console.log("hooola2")
       const {error} = await supabase
       .from("tasks")
       .update({status:status})
