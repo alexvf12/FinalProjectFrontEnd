@@ -19,22 +19,24 @@
       <div style="height:50px" @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent></div>
       <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" draggable="true"
         @dragstart="startDrag($event, task)" />
-    </div>
+    
 
     <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
       id="inputGroup-sizing-default" /><button @click="addNewTasks2" type="button">Add new task</button>
-  </div>
+    </div>
   <div class="divIndividual3 bg-light mt-5 mb-5 w-75 text-center">
     <h4 class="text-center">Done</h4>
     <hr />
 
-    <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent></div>
+    <div style="height:50px" @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent></div>
     <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" draggable="true"
       @dragstart="startDrag($event, task)" />
-  </div>
+  
 
   <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
     id="inputGroup-sizing-default" /><button @click="addNewTasks3" type="button">Add new task</button>
+    </div>
+  </div>
 </template>
 
 <script>
