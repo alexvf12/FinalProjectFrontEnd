@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="shadow p-3 mb-4 rounded">
     <div class="d-flex justify-content-between div">
       <img src="../../public/logo.png" alt="logo-tool" class=" logo"  />
 
@@ -41,6 +41,9 @@ export default {
 
 </script>
 <style scoped>
+
+
+
 .ul {
   font-size: 12px;
   margin-right: 10px;
