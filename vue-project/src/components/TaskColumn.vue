@@ -1,6 +1,6 @@
 <template>
   <div class="divGeneral d-flex flex-column align-items-center">
-    <div class="divIndividual1 mt-5 w-75 text-center">
+    <div class="divIndividual mt-5 w-75 text-center">
       <h4 class="text-center">TO DO</h4>
       <hr />
 
@@ -23,7 +23,7 @@
       /><button type="submit">Add new task</button>
     </form>
     </div>
-    <div class="divIndividual2 mt-5 w-75 text-center">
+    <div class="divIndividual mt-5 w-75 text-center">
       <h4 class="text-center">DOING</h4>
       <hr />
 
@@ -45,7 +45,7 @@
       /><button  type="submit">Add new task</button>
     </form>
     </div>
-    <div class="divIndividual3 mt-5 mb-5 w-75 text-center">
+    <div id="doneDiv" class="divIndividual mt-5 mb-5 w-75 text-center">
       <h4 class="text-center">DONE</h4>
       <hr />
 
@@ -166,5 +166,24 @@ input {
 
 .divGeneral {
   background: #f1f7fe;
+ 
+}
+
+@media  (min-width: 1024px){
+
+.divGeneral  {
+display: flex !important; 
+flex-direction: row !important;
+justify-content: space-around;
+align-items: flex-start !important;
+}
+
+#doneDiv{
+  margin-bottom: 0rem !important;
+}
+
+.divIndividual{
+  width: 30% !important;
+}
 }
 </style>
