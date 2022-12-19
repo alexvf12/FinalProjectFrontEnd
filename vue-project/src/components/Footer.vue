@@ -34,4 +34,26 @@ p{
     font-size: 10px;
 }
 
+@media (min-width: 720px) { 
+footer{
+    background-color: #FFE478;
+    height: 25rem;
+}
+ul{
+    font-size: 22px;
+    padding-top: 130px;
+
+}
+.enlace{
+    color: black;
+    text-decoration-line: none;
+    margin-right: 25px;
+}
+
+p{
+    font-size: 18px;
+}
+
+}
+
 </style>

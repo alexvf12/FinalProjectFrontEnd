@@ -41,17 +41,13 @@ export default {
 
 </script>
 <style scoped>
-
-
-
 .ul {
-  font-size: 12px;
   margin-right: 10px;
 }
 
 .logo{
   width: 9rem;
-  height: vh;  
+  height: 8vh;  
 }
 
 div{
@@ -66,4 +62,22 @@ ul{
   display: flex;
   align-items: center;
 }
+
+@media (min-width: 720px) { 
+  .logo{
+  width: 20rem;
+  height: 15vh;  
+
+}
+div{
+  height: 15vh;
+}
+ul{
+  padding-top: 30px;
+}
+button{
+font-size: 20px;
+  }
+}
+
 </style>
