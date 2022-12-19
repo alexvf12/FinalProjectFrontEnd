@@ -1,5 +1,5 @@
 <template>
-  <section class="background">
+  <section class="background gris">
     <div class="d-flex align-items-center flex-column">
       <h2 class="lean">LEAN PROJECT MANAGEMENT.</h2>
       <h2 class="simpli">SIMPLIFIED.</h2>
@@ -12,7 +12,7 @@
       </h3>
       <p class="size-1 mx-5">The Tool task management board gives you an excellent overview of your current work situation.
         Visualizing work leads to improved productivity.</p>
-      <img class="tablero" src="../../public/Tablero-trello.png" alt="tablero">
+      <img class="tablero img-fluid" src="../../public/Tablero-trello.png" alt="tablero">
     </div>
   </section>
 
@@ -48,9 +48,10 @@ export default {
 <style>
 .background {
   background-image: url(../../public/Website.png);
-  height: 58.2vh;
+  height: 55vh;
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
 }
 
 .lean {
@@ -76,7 +77,7 @@ export default {
 }
 
 .h-1 {
-  padding-top: 10%;
+  padding-top: 7%;
   height: 60vh;
 
 }
@@ -91,7 +92,22 @@ export default {
 }
 
 .tablero{
-  width: 70%;
+  width: 85%;
 }
 
+@media (min-width: 900px){
+  .background{
+    height: 180vh;
+    background-size: auto;
+
+
+  }
+}
+@media (min-width: 400px) and (max-width: 900px) {
+  .background{
+    height: 120vh;
+    background-size: auto;
+
+  }
+}
 </style>

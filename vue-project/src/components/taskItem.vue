@@ -100,8 +100,6 @@ input{
   border: 0;
     font-size: 13px;
     margin: 8px;
-
-
 }
 
 </style>
