@@ -1,9 +1,9 @@
 <template>
   
-  <div v-if="editing">
-    <form action="" @submit="edit(task.id)" >
-    <input v-model="task.title" type="text">
-    <button ><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+  <div   v-if="editing">
+    <form class="w-100 contenedor-global" action="" @submit="edit(task.id)" >
+    <input class="w-90" v-model="task.title" type="text">
+    <button class="btn"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
    </form>
   </div>
   <div @mouseover="hover = true"
@@ -81,4 +81,27 @@ button{
   background-color: none;
 
 }
+
+.hide {
+  display: none;
+}
+    
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+
+.w-90{
+  width: 88%;
+}
+
+input{
+  outline: none;
+  border: 0;
+    font-size: 13px;
+    margin: 8px;
+
+
+}
+
 </style>
