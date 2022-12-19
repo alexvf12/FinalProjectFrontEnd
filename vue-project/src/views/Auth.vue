@@ -47,9 +47,10 @@ export default {
 </script>
 
 <style>
+
 .background {
   background-image: url(../../public/Website.png);
-  height: 55vh;
+  height: 25rem;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -104,14 +105,15 @@ export default {
 
 @media (min-width: 900px) {
   .background {
-    height: 180vh;
-    background-size: auto;
+    height: 80rem;
+    background-size: cover;
+
   }
 
   .lean {
     font-size: 3rem;
     font-weight: 700;
-    margin-top: 14%;
+    margin-top: 15rem;
   }
 
   .simpli {
@@ -129,7 +131,7 @@ export default {
   }
 
   .h-1 {
-    padding-top: 7%;
+    padding-top: 15%;
     height: 160vh;
 
   }
@@ -146,7 +148,7 @@ export default {
   .lean {
     font-size: 3rem;
     font-weight: 700;
-    margin-top: 12%;
+    margin-top: 9rem;
   }
 
   .simpli {
@@ -165,7 +167,7 @@ export default {
   }
 
   .h-1 {
-    padding-top: 7%;
+    padding-top: 15%;
     height: 130vh;
 
   }
