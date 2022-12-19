@@ -132,7 +132,7 @@ export default {
 
   .h-1 {
     padding-top: 15%;
-    height: 160vh;
+    height: 180vh;
 
   }
 
