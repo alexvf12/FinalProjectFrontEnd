@@ -176,6 +176,7 @@ display: flex !important;
 flex-direction: row !important;
 justify-content: space-around;
 align-items: flex-start !important;
+height: 100vh;
 }
 
 #doneDiv{
@@ -184,6 +185,7 @@ align-items: flex-start !important;
 
 .divIndividual{
   width: 30% !important;
+  height: 100vh;
 }
 }
 </style>
