@@ -14,7 +14,7 @@ export default defineStore("tasks", {
       const { data: tasks } = await supabase
         .from("tasks")
         .select("*")
-        .order("id", { ascending: false });
+        .order("id", { ascending: true });
       this.tasks = tasks;
     },
 
@@ -25,7 +25,7 @@ export default defineStore("tasks", {
 
         .insert({ user_id: id, title: title, status: status })
 
-        .order("id", { ascending: false });
+        .order("id", { ascending: true });
 
       this.tasks = tasks;
 
