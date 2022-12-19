@@ -1,19 +1,23 @@
 <template>
+  
   <div v-if="editing">
+    <form action="" @submit="edit(task.id)" >
     <input v-model="task.title" type="text">
-    <button @click="edit(task.id)"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+    <button ><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+   </form>
   </div>
-  <div v-else class="d-flex contenedor-global">
-    <div class="w-65 d-flex justify-content-end">
+  <div @mouseover="hover = true"
+      @mouseleave="hover = false" v-else class="d-flex  contenedor-global">
+    <div class="w-65 d-flex justify-content-start ">
       <h5 >
         
         {{ task.title }}
 
       </h5>
     </div>
-    <div class="w-50 d-flex justify-content-end ">
-      <button class="btn" @click="editing = !editing"> <ion-icon name="create-outline"></ion-icon></button>
-      <button class="btn" @click="deleteElement(task.id)"><ion-icon name="trash-outline"></ion-icon></button>
+    <div  v-if="hover" class="w-50 d-flex justify-content-end">
+      <button  class="btn" @click="editing = !editing"> <ion-icon name="create-outline"></ion-icon></button>
+      <button  class="btn" @click="deleteElement(task.id)"><ion-icon name="trash-outline"></ion-icon></button>
     </div>
    
 
@@ -31,7 +35,8 @@ import userStore from "../stores/user.js";
 export default {
   data() {
     return {
-      editing: false
+      editing: false,
+      hover: false,
     }
   },
   computed: {
@@ -59,6 +64,7 @@ export default {
 
 h5{
   font-size: 14px;
+  margin: 10px;
 
 }
 .contenedor-global{

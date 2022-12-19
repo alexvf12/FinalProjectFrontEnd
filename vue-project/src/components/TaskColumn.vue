@@ -1,42 +1,71 @@
 <template>
   <div class="divGeneral d-flex flex-column align-items-center">
     <div class="divIndividual1 mt-5 w-75 text-center">
-      <h4 class="text-center">To-do list</h4>
+      <h4 class="text-center">TO DO</h4>
       <hr />
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
-        <taskItem v-for="task in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task" draggable="true"
-          @dragstart="startDrag($event, task)" />
+        <taskItem
+          v-for="task in tasksStore.filteredStatus0"
+          class="d-flex flex-row"
+          :task="task"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        />
       </div>
-
-      <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
-        id="inputGroup-sizing-default" /><button @click="addNewTasks" type="button">Add new task</button>
+<form action="" @submit="addNewTasks" >
+      <input
+        v-model="title"
+        type="text"
+        placeholder="Type a task..."
+        class="input-group-text"
+        id="inputGroup-sizing-default"
+      /><button type="submit">Add new task</button>
+    </form>
     </div>
     <div class="divIndividual2 mt-5 w-75 text-center">
-      <h4 class="text-center">Doing</h4>
+      <h4 class="text-center">DOING</h4>
       <hr />
 
-      <div  @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
-      <taskItem v-for="task in tasksStore.filteredStatus1" :task="task" draggable="true"
-        @dragstart="startDrag($event, task)" />
+      <div @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
+        <taskItem
+          v-for="task in tasksStore.filteredStatus1"
+          :task="task"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        />
       </div>
-    
-
-    <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
-      id="inputGroup-sizing-default" /><button @click="addNewTasks2" type="button">Add new task</button>
+      <form action="" @submit="addNewTasks2" >
+      <input
+        v-model="title2"
+        type="text"
+        placeholder="Type a task..."
+        class="input-group-text"
+        id="inputGroup-sizing-default"
+      /><button  type="submit">Add new task</button>
+    </form>
     </div>
-  <div class="divIndividual3  mt-5 mb-5 w-75 text-center">
-    <h4 class="text-center">Done</h4>
-    <hr />
+    <div class="divIndividual3 mt-5 mb-5 w-75 text-center">
+      <h4 class="text-center">DONE</h4>
+      <hr />
 
-    <div  @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
-    <taskItem v-for="task in tasksStore.filteredStatus2" :task="task" draggable="true"
-      @dragstart="startDrag($event, task)" />
-    </div>
-  
-
-  <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
-    id="inputGroup-sizing-default" /><button @click="addNewTasks3" type="button">Add new task</button>
+      <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
+        <taskItem
+          v-for="task in tasksStore.filteredStatus2"
+          :task="task"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        />
+      </div>
+      <form action="" @submit="addNewTasks3" >
+      <input
+        v-model="title3"
+        type="text"
+        placeholder="Type a task..."
+        class="input-group-text"
+        id="inputGroup-sizing-default"
+      /><button type="submit">Add new task</button>
+    </form>
     </div>
   </div>
 </template>
@@ -47,7 +76,6 @@ import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
 import taskItem from "./taskItem.vue";
 
-
 export default {
   data() {
     return {
@@ -57,8 +85,6 @@ export default {
       status: 0,
       status2: 1,
       status3: 2,
-      
-      
     };
   },
   components: {
@@ -76,7 +102,7 @@ export default {
         this.title,
         this.status
       );
-      this.title = ""
+      this.title = "";
     },
     async addNewTasks2() {
       const response = await this.tasksStore.createTask(
@@ -84,7 +110,7 @@ export default {
         this.title2,
         this.status2
       );
-      this.title2 = ""
+      this.title2 = "";
     },
     async addNewTasks3() {
       const response = await this.tasksStore.createTask(
@@ -92,27 +118,24 @@ export default {
         this.title3,
         this.status3
       );
-      this.title3 = ""
+      this.title3 = "";
     },
-    startDrag(event, task){
-      console.log(task)
-      event.dataTransfer.dropEffect = "move"
-      event.dataTransfer.effectAllowed = "move"
-      event.dataTransfer.setData("taskID", task.id)
+    startDrag(event, task) {
+      console.log(task);
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("taskID", task.id);
     },
-    onDrop(event, status){
-        const taskID = event.dataTransfer.getData("taskID")
-        this.tasksStore.modifiedStatus(status, taskID)
-      },
+    onDrop(event, status) {
+      const taskID = event.dataTransfer.getData("taskID");
+      this.tasksStore.modifiedStatus(status, taskID);
+    },
   },
   mounted() {
-    this.tasksStore.fetchTasks()
+    this.tasksStore.fetchTasks();
   },
-  
 };
 </script>
-
-
 
 <style scoped>
 button {
@@ -126,17 +149,13 @@ button {
 
 h4 {
   margin-top: 10px;
-
-
 }
 
 hr {
   margin: 5px 0;
- background: black;
- height: 3px;
- margin-bottom: 15px;
-
-
+  background: black;
+  height: 3px;
+  margin-bottom: 15px;
 }
 
 input {
@@ -148,7 +167,4 @@ input {
 .divGeneral {
   background: #f1f7fe;
 }
-
-
-
 </style>
