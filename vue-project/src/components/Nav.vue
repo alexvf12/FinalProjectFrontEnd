@@ -60,12 +60,9 @@ ul{
 }
 
 @media (min-width: 720px) { 
-  .logo{
-  width: 22rem;
-}
 
 button{
-font-size: 25px;
+font-size: 20px;
   }
 }
 
