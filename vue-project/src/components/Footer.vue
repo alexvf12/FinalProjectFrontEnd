@@ -42,16 +42,20 @@ footer{
 ul{
     font-size: 22px;
     padding-top: 130px;
+    margin-bottom: 120px;
 
 }
 .enlace{
     color: black;
     text-decoration-line: none;
-    margin-right: 25px;
+    margin-right: 10rem;
+}
+.enlace img{
+    width: 40px;
 }
 
 p{
-    font-size: 18px;
+    font-size: 22px;
 }
 
 }

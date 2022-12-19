@@ -46,12 +46,8 @@ export default {
 }
 
 .logo{
-  width: 9rem;
-  height: 8vh;  
-}
-
-div{
-  height: 10vh;
+  width: 8rem;
+  
 }
 
 ul{
@@ -65,18 +61,11 @@ ul{
 
 @media (min-width: 720px) { 
   .logo{
-  width: 20rem;
-  height: 15vh;  
+  width: 22rem;
+}
 
-}
-div{
-  height: 15vh;
-}
-ul{
-  padding-top: 30px;
-}
 button{
-font-size: 20px;
+font-size: 25px;
   }
 }
 
