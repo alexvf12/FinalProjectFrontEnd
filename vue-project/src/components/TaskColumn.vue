@@ -5,7 +5,7 @@
       <hr />
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
-       <div class="space"></div>
+      <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus0"
           class="d-flex flex-row"
@@ -60,7 +60,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-      <form action="" @submit="addNewTasks3" >
+      <form action="" @submit.prevent="addNewTasks3" >
       <input
         v-model="title3"
         type="text"
