@@ -5,6 +5,7 @@
       <hr />
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
+       <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus0"
           class="d-flex flex-row"
@@ -13,7 +14,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-<form action="" @submit="addNewTasks" >
+<form action="" @submit.prevent="addNewTasks" >
       <input
         v-model="title"
         type="text"
@@ -28,6 +29,7 @@
       <hr />
 
       <div @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
+        <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus1"
           :task="task"
@@ -35,7 +37,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-      <form action="" @submit="addNewTasks2" >
+      <form action="" @submit.prevent="addNewTasks2" >
       <input
         v-model="title2"
         type="text"
@@ -50,6 +52,7 @@
       <hr />
 
       <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
+        <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus2"
           :task="task"
@@ -75,6 +78,7 @@ import { mapStores } from "pinia";
 import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
 import taskItem from "./taskItem.vue";
+//import bonusStore from "../stores/bonus";
 
 export default {
   data() {
@@ -93,6 +97,7 @@ export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
+    //...mapStores(bonusStore),
   },
 
   methods: {
@@ -100,7 +105,8 @@ export default {
       const response = await this.tasksStore.createTask(
         this.userStore.user.id,
         this.title,
-        this.status
+        this.status,
+        this.order,
       );
       this.title = "";
     },
@@ -108,7 +114,8 @@ export default {
       const response = await this.tasksStore.createTask(
         this.userStore.user.id,
         this.title2,
-        this.status2
+        this.status2,
+        this.order,
       );
       this.title2 = "";
     },
@@ -116,7 +123,8 @@ export default {
       const response = await this.tasksStore.createTask(
         this.userStore.user.id,
         this.title3,
-        this.status3
+        this.status3,
+        this.order,
       );
       this.title3 = "";
     },
@@ -146,6 +154,9 @@ button {
   background-color: #282a2aac;
   color: white;
 }
+.space{
+  height: 2vh;
+}
 
 h4 {
   margin-top: 10px;
@@ -155,7 +166,7 @@ hr {
   margin: 5px 0;
   background: black;
   height: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 input {

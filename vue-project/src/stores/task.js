@@ -18,14 +18,14 @@ export default defineStore("tasks", {
       this.tasks = tasks;
     },
 
-    async createTask(id, title, status) {
+    async createTask(id, title, status, order) {
       const { data: tasks } = await supabase
 
         .from("tasks")
 
-        .insert({ user_id: id, title: title, status: status })
+        .insert({ user_id: id, title: title, status: status, order: order })
 
-        .order("id", { ascending: true });
+        .order("order", { ascending: true });
 
       this.tasks = tasks;
 
