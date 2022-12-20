@@ -59,7 +59,7 @@ export default defineStore("tasks", {
         .update({ order: order })
         .eq("id", id);
 
-      /*this.fetchTasks();*/
+      this.fetchTasks();
     },
   },
     getters: {

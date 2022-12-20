@@ -1,4 +1,4 @@
-/*import { defineStore } from "pinia";
+import { defineStore } from "pinia";
 
 import { supabase } from "../supabase";
 
@@ -32,4 +32,4 @@ export default defineStore("items", {
     },
 },
 
-});*/
+});

@@ -1,4 +1,9 @@
 <template>
+  <div class="bg-gris">
+    <button>
+      <ion-icon name="add-outline"></ion-icon>New column
+    </button>
+  </div>
   <div class="divGeneral d-flex flex-column align-items-center">
     <div class="divIndividual mt-5 w-75 text-center">
       <h4 class="text-center">TO DO</h4>
@@ -6,24 +11,13 @@
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
         <div class="space"></div>
-        <taskItem
-          v-for="(task,index) in tasksStore.filteredStatus0"
-          class="d-flex flex-row"
-          :task="task"
-          @taskUp="moveTaskUp(index, task)"
-          @taskDown="moveTaskDown(index, task)"
-          draggable="true"
-          @dragstart="startDrag($event, task)"
-        />
+        <taskItem v-for="(task, index) in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task"
+          @taskUp="moveTaskUp(index, task)" @taskDown="moveTaskDown(index, task)" draggable="true"
+          @dragstart="startDrag($event, task)" />
       </div>
       <form action="" @submit.prevent="addNewTasks()">
-        <input
-          v-model="title"
-          type="text"
-          placeholder="Type a task..."
-          class="input-group-text"
-          id="inputGroup-sizing-default"
-        /><button type="submit">Add new task</button>
+        <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
+          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
       </form>
     </div>
     <div class="divIndividual mt-5 w-75 text-center">
@@ -32,23 +26,12 @@
 
       <div @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
         <div class="space"></div>
-        <taskItem
-          v-for="(task, index) in tasksStore.filteredStatus1"
-          :task="task"
-          @taskUp="moveTaskUp(index)"
-          @taskDown="moveTaskDown(index)"
-          draggable="true"
-          @dragstart="startDrag($event, task)"
-        />
+        <taskItem v-for="(task, index) in tasksStore.filteredStatus1" :task="task" @taskUp="moveTaskUp2(index, task)"
+          @taskDown="moveTaskDown2(index,task)" draggable="true" @dragstart="startDrag($event, task)" />
       </div>
       <form action="" @submit.prevent="addNewTasks2()">
-        <input
-          v-model="title2"
-          type="text"
-          placeholder="Type a task..."
-          class="input-group-text"
-          id="inputGroup-sizing-default"
-        /><button type="submit">Add new task</button>
+        <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
+          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
       </form>
     </div>
     <div id="doneDiv" class="divIndividual mt-5 mb-5 w-75 text-center">
@@ -57,23 +40,12 @@
 
       <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
         <div class="space"></div>
-        <taskItem
-          v-for="task in tasksStore.filteredStatus2"
-          :task="task"
-          @taskUp="moveTaskUp"
-          @taskDown="moveTaskDown"
-          draggable="true"
-          @dragstart="startDrag($event, task)"
-        />
+        <taskItem v-for="(task, index) in tasksStore.filteredStatus2" :task="task" @taskUp="moveTaskUp3(index, task)" @taskDown="moveTaskDown3(index, task)"
+          draggable="true" @dragstart="startDrag($event, task)" />
       </div>
       <form action="" @submit.prevent="addNewTasks3()">
-        <input
-          v-model="title3"
-          type="text"
-          placeholder="Type a task..."
-          class="input-group-text"
-          id="inputGroup-sizing-default"
-        /><button type="submit">Add new task</button>
+        <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
+          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
       </form>
     </div>
   </div>
@@ -143,18 +115,44 @@ export default {
       const taskID = event.dataTransfer.getData("taskID");
       this.tasksStore.modifiedStatus(status, taskID);
     },
-    moveTaskUp(index,task) {
-      const orderActual= {...task}.order+0
-      console.log(orderActual)
-      const taskAnterior=this.tasksStore.filteredStatus0[index-1]
-      console.log(taskAnterior.order)
+    moveTaskUp(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskAnterior = this.tasksStore.filteredStatus0[index - 1]
       this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual.order, taskAnterior.id)
+      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
 
     },
-    moveTaskDown(index, task){
-      const taskPosterior=this.tasksStore.filteredStatus0[index+1]
+    moveTaskDown(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskPosterior = this.tasksStore.filteredStatus0[index + 1]
       this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
+      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
+    },
+    moveTaskUp2(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskAnterior = this.tasksStore.filteredStatus1[index - 1]
+      this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
+      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
+
+    },
+    moveTaskDown2(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskPosterior = this.tasksStore.filteredStatus1[index + 1]
+      this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
+      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
+    },
+    moveTaskUp3(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskAnterior = this.tasksStore.filteredStatus2[index - 1]
+      this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
+      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
+
+    },
+    moveTaskDown3(index, task) {
+      const orderActual = { ...task }.order + 0
+      const taskPosterior = this.tasksStore.filteredStatus2[index + 1]
+      this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
+      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
     }
   },
   mounted() {
@@ -192,6 +190,11 @@ input {
   margin-top: 10px;
   width: 100%;
   border: none;
+}
+
+.bg-gris {
+  background: #f1f7fe;
+
 }
 
 .divGeneral {
