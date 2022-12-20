@@ -5,6 +5,7 @@
       <hr />
 
       <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
+      <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus0"
           class="d-flex flex-row"
@@ -13,7 +14,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-<form action="" @submit="addNewTasks" >
+<form action="" @submit.prevent="addNewTasks" >
       <input
         v-model="title"
         type="text"
@@ -28,6 +29,7 @@
       <hr />
 
       <div @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
+        <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus1"
           :task="task"
@@ -35,7 +37,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-      <form action="" @submit="addNewTasks2" >
+      <form action="" @submit.prevent="addNewTasks2" >
       <input
         v-model="title2"
         type="text"
@@ -50,6 +52,7 @@
       <hr />
 
       <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
+        <div class="space"></div>
         <taskItem
           v-for="task in tasksStore.filteredStatus2"
           :task="task"
@@ -57,7 +60,7 @@
           @dragstart="startDrag($event, task)"
         />
       </div>
-      <form action="" @submit="addNewTasks3" >
+      <form action="" @submit.prevent="addNewTasks3" >
       <input
         v-model="title3"
         type="text"
@@ -145,6 +148,9 @@ button {
   border: none;
   background-color: #282a2aac;
   color: white;
+}
+.space{
+  height: 2vh;
 }
 
 h4 {
