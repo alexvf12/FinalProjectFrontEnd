@@ -19,10 +19,10 @@
       <button class="btn" @click="editing = !editing">
         <ion-icon name="create-outline"></ion-icon>
       </button>
-      <button class="btn" @click="moveTask">
+      <button class="btn" @click="moveTaskUp(index)">
         <ion-icon name="chevron-up-outline"></ion-icon>
       </button>
-      <button class="btn" @click="moveTask">
+      <button class="btn" @click="moveTaskDown(index)">
         <ion-icon name="chevron-down-outline"></ion-icon>
       </button>
 
@@ -59,9 +59,12 @@ export default {
     deleteElement(id) {
       this.tasksStore.deleteItem(id);
     },
-    moveTask(order) {
-      this.taskStore.createTask(this.item.length, order)
+    moveTaskUp(index){
+    this.$emit("taskUp", index)
     },
+    moveTaskDown(index){
+    this.$emit("taskDown", index)
+    }
   },
   props: {
     task: Object,
