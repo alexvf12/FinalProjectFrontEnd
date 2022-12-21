@@ -18,12 +18,12 @@ export default defineStore("tasks", {
       if (tasks) this.tasks = tasks;
     },
 
-    async createTask(id, title, status, order) {
+    async createTask(id, title, status, order, columnId) {
       const { data: tasks } = await supabase
 
         .from("tasks")
 
-        .insert({ user_id: id, title: title, status: status, order: order })
+        .insert({ user_id: id, title: title, status: status, order: order, columnId:columnId })
 
         .order("order", { ascending: true });
 
@@ -63,30 +63,18 @@ export default defineStore("tasks", {
     },
   },
     getters: {
-      filteredStatus0() {
-        return this.tasks.filter((task) => task.status === 0);
+      getTasksByStatus(state) {
+        return function (status) {
+          return state.tasks.filter((task) => task.status === status);
+        }
       },
-      filteredStatus1() {
-        return this.tasks.filter((task) => task.status === 1);
-      },
-      filteredStatus2() {
-        return this.tasks.filter((task) => task.status === 2);
-      },
-      maxOrder0() {
-        if (this.filteredStatus0.length === 0) return 0;
-        const map1 = this.filteredStatus0.map((task) => task.order);
-        return Math.max(...map1);
-      },
-      maxOrder1() {
-        if (this.filteredStatus1.length === 0) return 0;
-        const map1 = this.filteredStatus1.map((task) => task.order);
-        return Math.max(...map1);
-      },
-      maxOrder2() {
-        if (this.filteredStatus2.length === 0) return 0;
-        const map1 = this.filteredStatus2.map((task) => task.order);
-        return Math.max(...map1);
-      },
-
-      },
+        getMaxOrderByStatus(state) {
+          return function (status) {
+            const filteredStatus = state.getTasksByStatus(status)
+            const map1 = filteredStatus.map((task) => task.order);
+            return Math.max(...map1);
+          }
+        } 
+      }
 });
+

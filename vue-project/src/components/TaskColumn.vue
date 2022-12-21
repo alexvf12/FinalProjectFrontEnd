@@ -1,10 +1,6 @@
 <template>
    <newColumn />
-  <div class="bg-gris">
-    <button>
-      <ion-icon name="add-outline"></ion-icon>New column
-    </button>
-  </div>
+  
   <!-- <div class="divGeneral d-flex flex-column align-items-center">
     <div class="divIndividual mt-5 w-75 text-center">
       <h4 class="text-center">TO DO</h4>

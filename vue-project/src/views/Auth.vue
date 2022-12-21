@@ -78,7 +78,7 @@ export default {
 
 .h-1 {
   padding-top: 7%;
-  height: 60vh;
+  height: fit-content;
 
 }
 
@@ -92,7 +92,7 @@ export default {
 }
 
 .tablero{
-  width: 85%;
+  width: 45rem;
 }
 
 @media (min-width: 900px){

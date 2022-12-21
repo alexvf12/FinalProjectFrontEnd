@@ -108,7 +108,7 @@ button {
 }
 
 .w-90 {
-  width: 88%;
+  width: 80%;
 }
 
 input {
