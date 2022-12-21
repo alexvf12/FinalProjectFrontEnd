@@ -2,33 +2,34 @@ import { defineStore } from "pinia";
 
 import { supabase } from "../supabase";
 
-export default defineStore("items", {
+export default defineStore("bonus", {
   state() {
     return {
-      items: [],
+      columns: [],
     };
   },
 
   actions: {
-    async fetchTasks() {
-      const { data: tasks } = await supabase
-        .from("tasks")
+    async fetchColumns() {
+      
+      const { data: columns } = await supabase
+        .from("columns")
         .select("*")
-        .order("order", { ascending: true });
-      this.tasks = tasks;
+        .order("id", { ascending: true });
+      this.columns = columns;
     },
-    async createItem(id, title, status, order) {
-      const { data: tasks } = await supabase
+    async createColumn(user_id, mainTitle) {
+      const { data: columns } = await supabase
 
-        .from("tasks")
+        .from("columns")
 
-        .insert({ user_id: id, title: title, status: status, order: order})
+        .insert({ user_id:user_id, mainTitle: mainTitle})
 
-        .order("order", { ascending: true });
+        .order("id", { ascending: true });
 
-      this.tasks = tasks;
+      
 
-      this.fetchTasks();
+      this.fetchColumns();
     },
 },
 

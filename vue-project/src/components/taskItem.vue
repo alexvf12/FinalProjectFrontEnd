@@ -38,7 +38,7 @@
 import { mapStores } from "pinia";
 import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
-//import bonusStore from "../stores/bonus";
+
 
 export default {
   data() {

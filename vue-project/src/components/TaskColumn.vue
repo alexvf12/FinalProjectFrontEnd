@@ -1,10 +1,11 @@
 <template>
+   <newColumn />
   <div class="bg-gris">
     <button>
       <ion-icon name="add-outline"></ion-icon>New column
     </button>
   </div>
-  <div class="divGeneral d-flex flex-column align-items-center">
+  <!-- <div class="divGeneral d-flex flex-column align-items-center">
     <div class="divIndividual mt-5 w-75 text-center">
       <h4 class="text-center">TO DO</h4>
       <hr />
@@ -47,8 +48,11 @@
         <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
           id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
       </form>
-    </div>
-  </div>
+    </div> 
+   
+    
+  </div>-->
+  
 </template>
 
 <script>
@@ -56,7 +60,9 @@ import { mapStores } from "pinia";
 import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
 import taskItem from "./taskItem.vue";
-//import bonusStore from "../stores/bonus";
+import newColumn from "../components/newColumn.vue";
+import bonusStore from "../stores/bonus";
+
 
 export default {
   data() {
@@ -71,11 +77,13 @@ export default {
   },
   components: {
     taskItem,
+    newColumn,
   },
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
-    //...mapStores(bonusStore),
+    ...mapStores(bonusStore),
+    
   },
 
   methods: {
@@ -217,6 +225,7 @@ input {
   .divIndividual {
     width: 30% !important;
     height: 100vh;
+    margin: 0 10px;
   }
 }
 </style>
