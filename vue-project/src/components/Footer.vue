@@ -14,7 +14,7 @@
 
 <script></script>
 
-<style scope>
+<style scoped>
 footer{
     background-color: #FFE478;
     height: 10rem;

@@ -6,9 +6,9 @@
 
       <div class="ul">
         <ul class="flex list-unstyled">
-          <li><button v-if="!userStore.user" @click="$emit('add2')" type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
-          <li><button v-if="!userStore.user" @click="$emit('add')" type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
-          <li><button v-if="userStore.user" @click="isLoggedOut()" type="button" class="btn btn-outline-warning btn-sm">Log Out</button></li>
+          <li v-if="!userStore.user"><button  @click="$emit('add2')" type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
+          <li v-if="!userStore.user"><button  @click="$emit('add')" type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
+          <li v-if="userStore.user"><button  @click="isLoggedOut()" type="button" class="btn btn-outline-warning btn-sm">Log Out</button></li>
         </ul>
       </div>
     </div>
