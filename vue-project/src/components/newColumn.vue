@@ -68,7 +68,7 @@ export default {
         this.userStore.user.id,
         this.title,
         columnId,
-        this.tasksStore.getMaxOrderByStatus(columnId) + 1
+        (this.tasksStore.getMaxOrderByStatus(columnId) + 1)
       );
       this.title = "";
     },

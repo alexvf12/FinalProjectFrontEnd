@@ -65,12 +65,13 @@ export default defineStore("tasks", {
     getters: {
       getTasksByStatus(state) {
         return function (status) {
-          return state.tasks.filter((task) => task.status === status);
+          return state.tasks?.filter((task) => task.status === status);
         }
       },
         getMaxOrderByStatus(state) {
           return function (status) {
             const filteredStatus = state.getTasksByStatus(status)
+            if (filteredStatus.length === 0) return 0 
             const map1 = filteredStatus.map((task) => task.order);
             return Math.max(...map1);
           }

@@ -19,10 +19,10 @@
       <button class="btn" @click="editing = !editing">
         <ion-icon name="create-outline"></ion-icon>
       </button>
-      <button class="btn" @click="moveTaskUp(index)">
+      <button class="btn" v-if="task.order>1" @click="moveTaskUp(index)">
         <ion-icon name="chevron-up-outline"></ion-icon>
       </button>
-      <button class="btn" @click="moveTaskDown(index)">
+      <button class="btn" v-if="task.order<this.tasksStore.getMaxOrderByStatus(task.status)" @click="moveTaskDown(index)">
         <ion-icon name="chevron-down-outline"></ion-icon>
       </button>
 
