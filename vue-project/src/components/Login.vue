@@ -1,8 +1,7 @@
 <template>
     <div v-if="show2">
         <div v-if="!userStore.user" class="logModal">
-            <form @submit.prevent="login()"  class="screen-1 signup" name="myForm" action=""
-                onsubmit="" method="post">
+            <form @submit.prevent="login()" class="screen-1 signup" name="myForm" action="" onsubmit="" method="post">
                 <div class="d-flex justify-content-end">
                     <button class="btn shadow-none w-5" @click="$emit('close2')">
                         <ion-icon name="close-outline"></ion-icon>
@@ -66,8 +65,8 @@ export default {
         async login() {
             const response = await this.userStore.signIn(this.email, this.password);
         },
-    },
-};
+    }
+}
 </script>
 
 <style scoped>
@@ -76,12 +75,13 @@ export default {
 }
 
 .logModal {
-    position: fixed;
+    position: fixed !important;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, .7);
+    z-index: 10000;
 }
 
 .signup {
@@ -220,13 +220,13 @@ label {
     height: 1vh;
 }
 
-@media (min-width: 720px) { 
-img{
-width: 15rem !important;
-}
-.screen-1{
-    width: 40rem;
-}
-}
+@media (min-width: 720px) {
+    img {
+        width: 15rem !important;
+    }
 
+    .screen-1 {
+        width: 40rem;
+    }
+}
 </style>

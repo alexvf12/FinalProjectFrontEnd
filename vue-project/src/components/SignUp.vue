@@ -10,7 +10,7 @@
          <div class="d-flex justify-content-center">
             <img class="w-50 mb-4" src="../../public/logo.png" alt="logo-tool" />
          </div>
-         <h4 class="">SING UP FOR FREE</h4>
+         <h4 class="">SIGN UP FOR FREE</h4>
          <div class="email">
             <label for="name">Full name</label>
             <div>
@@ -82,6 +82,7 @@ export default {
    display: flex;
    justify-content: center;
    align-items: center;
+   z-index: 10000;
 }
 
 .signup {

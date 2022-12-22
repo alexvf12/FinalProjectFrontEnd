@@ -13,7 +13,7 @@
       <p class="size-1 mx-5">The Tool task management board gives you an excellent overview of your current work
         situation.
         Visualizing work leads to improved productivity.</p>
-      <img class="tablero img-fluid" src="../../public/Tablero-trello.png" alt="tablero">
+      <img class="tablero img-fluid" src="../../public/captura.png" alt="captura">
     </div>
   </section>
 
@@ -49,7 +49,7 @@ export default {
 <style>
 
 .background {
-  background-image: url(../../public/Website.png);
+  background-image: url(../../public/Web.png);
   height: 25rem;
   background-repeat: no-repeat;
   background-size: contain;
@@ -86,6 +86,7 @@ export default {
 
 .h-1 {
   height: fit-content;
+  padding-top: 1rem;
 }
 
 .color {
@@ -99,8 +100,8 @@ export default {
 
 
 .tablero{
-  width: 45rem;
-
+  width: 20rem;
+margin-bottom: 1rem;
 }
 
 @media (min-width: 900px) {
@@ -144,6 +145,12 @@ export default {
   .size-1 {
   font-size: 22px;
   font-weight: 300;
+}
+
+.tablero{
+  width: 40rem;
+  margin-bottom: 2rem;
+
 }
 
 }
