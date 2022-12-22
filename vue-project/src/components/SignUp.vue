@@ -64,6 +64,7 @@ export default {
    methods: {
       async signup() {
          const response = await this.userStore.signUp(this.email, this.password);
+         alert("Your registration had been confirmed!\nYou can Log In now")
       },
    },
 };
