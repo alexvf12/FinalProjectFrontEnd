@@ -1,6 +1,6 @@
 <template>
-    <footer>
-    <ul class="d-flex flex-row justify-content-center list-unstyled">
+    <footer class="py-3">
+    <ul class="d-flex flex-row justify-content-around list-unstyled">
     <li><a class="enlace" href=""> <img src="../../public/email-logo.png" alt="logo-correo" width="20px"> hello@tools.com</a></li>
     <li><a class="enlace" href=""> <img src="../../public/facebook-logo.png" alt="logo-facebook" width="20px"> Facebook</a></li>
     <li> <a class="enlace" href=""> <img src="../../public/linkedin-logo.png" alt="logo-linkedin" width="20px"> LinkedIn</a></li>
@@ -17,17 +17,13 @@
 <style scoped>
 footer{
     background-color: #FFE478;
-    height: 10rem;
 }
 ul{
     font-size: 12px;
-    padding-top: 35px;
-
 }
 .enlace{
     color: black;
     text-decoration-line: none;
-    margin-right: 25px;
 }
 
 p{
@@ -37,25 +33,21 @@ p{
 @media (min-width: 720px) { 
 footer{
     background-color: #FFE478;
-    height: 25rem;
+    height: fit-content;
 }
 ul{
-    font-size: 22px;
-    padding-top: 130px;
-    margin-bottom: 120px;
-
+    font-size: 18px;
 }
 .enlace{
     color: black;
     text-decoration-line: none;
-    margin-right: 10rem;
 }
 .enlace img{
     width: 40px;
 }
 
 p{
-    font-size: 22px;
+    font-size: 15px;
 }
 
 }
