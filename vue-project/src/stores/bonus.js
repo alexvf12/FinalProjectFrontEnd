@@ -15,7 +15,7 @@ export default defineStore("bonus", {
       const { data: columns } = await supabase
         .from("columns")
         .select("*")
-        .order("id", { ascending: true });
+        .order("order", { ascending: true });
       this.columns = columns;
     },
     async createColumn(user_id, mainTitle, order) {
@@ -24,16 +24,13 @@ export default defineStore("bonus", {
         .from("columns")
 
         .insert({ user_id:user_id, mainTitle: mainTitle, order:order})
-
-        .order("id", { ascending: true });
-
       
 
       this.fetchColumns();
     },
     async modifiedOrderColumn(order, id) {
       const { error } = await supabase
-        .from("tasks")
+        .from("columns")
         .update({ order: order })
         .eq("id", id);
 
@@ -47,6 +44,9 @@ export default defineStore("bonus", {
             console.log(this.columns)
             console.log(map1)
             return Math.max(...map1) + 1;
+          },
+          filteredColumns(){
+            
           }
       }
 });
