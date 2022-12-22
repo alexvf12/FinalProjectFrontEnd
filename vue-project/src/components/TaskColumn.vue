@@ -7,7 +7,6 @@
     draggable="true"
     @dragstart="startDragColumn($event, column)"
   >
-  
     <div v-if="editing">
       <form class="w-100 contenedor-global" action="" @submit="edit(column.id)">
         <input class="w-90" v-model="column.mainTitle" type="text" />
@@ -16,47 +15,41 @@
         </button>
       </form>
     </div>
-    
-    
-      <div v-else class="d-flex flex-row justify-content-end">
-        <h4 >{{ column.mainTitle }}</h4>
-        <div v-if="hover" class="w-50 d-flex justify-content-end iconos">
-          <button class="btn" @click="editing = !editing">
-            <ion-icon name="create-outline"></ion-icon>
-          </button>
-          <button class="btn" @click="deleteElement(column.id)">
-            <ion-icon name="trash-outline"></ion-icon>
-          </button>
-        </div>
+
+    <div v-else class="d-flex flex-row justify-content-end">
+      <h4>{{ column.mainTitle }}</h4>
+      <div v-if="hover" class="w-50 d-flex justify-content-end iconos">
+        <button class="btn" @click="editing = !editing">
+          <ion-icon name="create-outline"></ion-icon>
+        </button>
+        <button class="btn" @click="myFunction(column.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
       </div>
-      <hr />
-      <div
-        @drop="onDrop($event, column.id)"
-        @dragenter.prevent
-        @dragover.prevent
-      >
-        <div class="space"></div>
-        <taskItem
-          v-for="(task, index) in tasksStore.getTasksByStatus(column.id)"
-          class="d-flex flex-row"
-          :task="task"
-          @taskUp="moveTaskUp(index, task)"
-          @taskDown="moveTaskDown(index, task)"
-          draggable="true"
-          @dragstart="startDrag($event, task)"
-        />
-      </div>
-      <form action="" @submit.prevent="addNewTasks(column.id)">
-        <input
-          v-model="title"
-          type="text"
-          placeholder="Type a task..."
-          class="input-group-text"
-          id="inputGroup-sizing-default"
-        /><button type="submit">Add new task</button>
-      </form>
     </div>
- 
+    <hr />
+    <div @drop="onDrop($event, column.id)" @dragenter.prevent @dragover.prevent>
+      <div class="space"></div>
+      <taskItem
+        v-for="(task, index) in tasksStore.getTasksByStatus(column.id)"
+        class="d-flex flex-row"
+        :task="task"
+        @taskUp="moveTaskUp(index, task)"
+        @taskDown="moveTaskDown(index, task)"
+        draggable="true"
+        @dragstart="startDrag($event, task)"
+      />
+    </div>
+    <form action="" @submit.prevent="addNewTasks(column.id)">
+      <input
+        v-model="title"
+        type="text"
+        placeholder="Type a task..."
+        class="input-group-text"
+        id="inputGroup-sizing-default"
+      /><button type="submit">Add new task</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -160,6 +153,14 @@ export default {
     deleteElement(id) {
       this.bonusStore.deleteColumn(id);
     },
+    myFunction(id) {
+      let text = "Are you sure you want to delete?\nEither OK or Cancel.";
+      if (confirm(text) == true) {
+        this.bonusStore.deleteColumn(id);
+      } else {
+        text = "You canceled!";
+      }
+    }
   },
   mounted() {
     this.tasksStore.fetchTasks();
@@ -175,7 +176,6 @@ export default {
   border-width: 2px;
   margin-bottom: 10px;
   background-color: white;
-
 }
 button {
   padding: 5px 10px;
