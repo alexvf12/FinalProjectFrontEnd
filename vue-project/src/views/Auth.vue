@@ -8,7 +8,7 @@
   </section>
   <section class="h-1 gris text-white">
     <div class="text-center">
-      <h3 class="mx-5 h2">Visualize your work with <h3 class="color">Tool task management</h3>
+      <h3 class="titulo mx-5 h2">Visualize your work with <h3 class="color">Tool task management</h3>
       </h3>
       <p class="size-1 mx-5">The Tool task management board gives you an excellent overview of your current work
         situation.
@@ -85,9 +85,7 @@ export default {
 }
 
 .h-1 {
-  padding-top: 7%;
   height: fit-content;
-
 }
 
 .color {
@@ -117,6 +115,12 @@ export default {
     font-weight: 700;
     margin-top: 15rem;
   }
+  .titulo{
+    font-size: 50px!important;
+  }
+  .color{
+    font-size: 35px!important;
+  }
 
   .simpli {
     font-size: 3rem;
@@ -133,10 +137,14 @@ export default {
   }
 
   .h-1 {
-    padding-top: 15%;
-    height: 180vh;
+    padding-top: 3rem;
+    height: fit-content;
 
   }
+  .size-1 {
+  font-size: 22px;
+  font-weight: 300;
+}
 
 }
 
