@@ -1,12 +1,6 @@
 <template>
-  <div
-    class="divIndividual mt-5 w-75 text-center"
-    @drop="onDropColumn($event, column)"
-    @dragenter.prevent
-    @dragover.prevent
-    draggable="true"
-    @dragstart="startDragColumn($event, column)"
-  >
+  <div class="divIndividual mt-5 w-75 text-center" @drop="onDropColumn($event, column)" @dragenter.prevent
+    @dragover.prevent>
     <div v-if="editing">
       <form class="w-100 contenedor-global" action="" @submit="edit(column.id)">
         <input class="w-90" v-model="column.mainTitle" type="text" />
@@ -16,7 +10,8 @@
       </form>
     </div>
 
-    <div v-else class="d-flex flex-row justify-content-end">
+    <div @dragstart="startDragColumn($event, column)" draggable="true" v-else
+      class="d-flex flex-row justify-content-end">
       <h4>{{ column.mainTitle }}</h4>
       <div v-if="hover" class="w-50 d-flex justify-content-end iconos">
         <button class="btn" @click="editing = !editing">
@@ -30,24 +25,13 @@
     <hr />
     <div @drop="onDrop($event, column.id)" @dragenter.prevent @dragover.prevent>
       <div class="space"></div>
-      <taskItem
-        v-for="(task, index) in tasksStore.getTasksByStatus(column.id)"
-        class="d-flex flex-row"
-        :task="task"
-        @taskUp="moveTaskUp(index, task)"
-        @taskDown="moveTaskDown(index, task)"
-        draggable="true"
-        @dragstart="startDrag($event, task)"
-      />
+      <taskItem v-for="(task, index) in tasksStore.getTasksByStatus(column.id)" class="d-flex flex-row" :task="task"
+        @taskUp="moveTaskUp(index, task)" @taskDown="moveTaskDown(index, task)" draggable="true"
+        @dragstart="startDrag($event, task)" />
     </div>
     <form action="" @submit.prevent="addNewTasks(column.id)">
-      <input
-        v-model="title"
-        type="text"
-        placeholder="Type a task..."
-        class="input-group-text"
-        id="inputGroup-sizing-default"
-      /><button type="submit">Add new task</button>
+      <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
+        id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
     </form>
   </div>
 </template>
@@ -177,6 +161,7 @@ export default {
   margin-bottom: 10px;
   background-color: white;
 }
+
 button {
   padding: 5px 10px;
   margin: 10px;
@@ -200,6 +185,7 @@ hr {
   height: 3px;
   margin-bottom: 25px;
 }
+
 .w-90 {
   width: 80%;
 }
