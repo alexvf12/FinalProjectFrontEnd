@@ -1,54 +1,62 @@
 <template>
-  <div class="bg-gris">
-    <button>
-      <ion-icon name="add-outline"></ion-icon>New column
-    </button>
-  </div>
-  <div class="divGeneral d-flex flex-column align-items-center">
-    <div class="divIndividual mt-5 w-75 text-center">
-      <h4 class="text-center">TO DO</h4>
-      <hr />
-
-      <div @drop="onDrop($event, 0)" @dragenter.prevent @dragover.prevent>
-        <div class="space"></div>
-        <taskItem v-for="(task, index) in tasksStore.filteredStatus0" class="d-flex flex-row" :task="task"
-          @taskUp="moveTaskUp(index, task)" @taskDown="moveTaskDown(index, task)" draggable="true"
-          @dragstart="startDrag($event, task)" />
-      </div>
-      <form action="" @submit.prevent="addNewTasks()">
-        <input v-model="title" type="text" placeholder="Type a task..." class="input-group-text"
-          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
+  <div
+    class="divIndividual mt-5 w-75 text-center"
+    @drop="onDropColumn($event, column)"
+    @dragenter.prevent
+    @dragover.prevent
+    draggable="true"
+    @dragstart="startDragColumn($event, column)"
+  >
+  
+    <div v-if="editing">
+      <form class="w-100 contenedor-global" action="" @submit="edit(column.id)">
+        <input class="w-90" v-model="column.mainTitle" type="text" />
+        <button class="btn">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </button>
       </form>
     </div>
-    <div class="divIndividual mt-5 w-75 text-center">
-      <h4 class="text-center">DOING</h4>
-      <hr />
-
-      <div @drop="onDrop($event, 1)" @dragenter.prevent @dragover.prevent>
-        <div class="space"></div>
-        <taskItem v-for="(task, index) in tasksStore.filteredStatus1" :task="task" @taskUp="moveTaskUp2(index, task)"
-          @taskDown="moveTaskDown2(index,task)" draggable="true" @dragstart="startDrag($event, task)" />
+    
+    
+      <div v-else class="d-flex flex-row justify-content-end">
+        <h4 >{{ column.mainTitle }}</h4>
+        <div v-if="hover" class="w-50 d-flex justify-content-end iconos">
+          <button class="btn" @click="editing = !editing">
+            <ion-icon name="create-outline"></ion-icon>
+          </button>
+          <button class="btn" @click="deleteElement(column.id)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
       </div>
-      <form action="" @submit.prevent="addNewTasks2()">
-        <input v-model="title2" type="text" placeholder="Type a task..." class="input-group-text"
-          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
+      <hr />
+      <div
+        @drop="onDrop($event, column.id)"
+        @dragenter.prevent
+        @dragover.prevent
+      >
+        <div class="space"></div>
+        <taskItem
+          v-for="(task, index) in tasksStore.getTasksByStatus(column.id)"
+          class="d-flex flex-row"
+          :task="task"
+          @taskUp="moveTaskUp(index, task)"
+          @taskDown="moveTaskDown(index, task)"
+          draggable="true"
+          @dragstart="startDrag($event, task)"
+        />
+      </div>
+      <form action="" @submit.prevent="addNewTasks(column.id)">
+        <input
+          v-model="title"
+          type="text"
+          placeholder="Type a task..."
+          class="input-group-text"
+          id="inputGroup-sizing-default"
+        /><button type="submit">Add new task</button>
       </form>
     </div>
-    <div id="doneDiv" class="divIndividual mt-5 mb-5 w-75 text-center">
-      <h4 class="text-center">DONE</h4>
-      <hr />
-
-      <div @drop="onDrop($event, 2)" @dragenter.prevent @dragover.prevent>
-        <div class="space"></div>
-        <taskItem v-for="(task, index) in tasksStore.filteredStatus2" :task="task" @taskUp="moveTaskUp3(index, task)" @taskDown="moveTaskDown3(index, task)"
-          draggable="true" @dragstart="startDrag($event, task)" />
-      </div>
-      <form action="" @submit.prevent="addNewTasks3()">
-        <input v-model="title3" type="text" placeholder="Type a task..." class="input-group-text"
-          id="inputGroup-sizing-default" /><button type="submit">Add new task</button>
-      </form>
-    </div>
-  </div>
+ 
 </template>
 
 <script>
@@ -56,17 +64,13 @@ import { mapStores } from "pinia";
 import tasksStore from "../stores/task.js";
 import userStore from "../stores/user.js";
 import taskItem from "./taskItem.vue";
-//import bonusStore from "../stores/bonus";
+import bonusStore from "../stores/bonus";
 
 export default {
   data() {
     return {
-      title: "",
-      title2: "",
-      title3: "",
-      status: 0,
-      status2: 1,
-      status3: 2,
+      editing: false,
+      hover: true,
     };
   },
   components: {
@@ -75,36 +79,20 @@ export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
-    //...mapStores(bonusStore),
+    ...mapStores(bonusStore),
   },
-
+  props: {
+    column: Object,
+  },
   methods: {
-    async addNewTasks() {
+    async addNewTasks(columnId) {
       const response = await this.tasksStore.createTask(
         this.userStore.user.id,
         this.title,
-        this.status,
-        this.tasksStore.maxOrder0 + 1
+        columnId,
+        this.tasksStore.getMaxOrderByStatus(columnId) + 1
       );
       this.title = "";
-    },
-    async addNewTasks2() {
-      const response = await this.tasksStore.createTask(
-        this.userStore.user.id,
-        this.title2,
-        this.status2,
-        this.tasksStore.maxOrder1 + 1
-      );
-      this.title2 = "";
-    },
-    async addNewTasks3() {
-      const response = await this.tasksStore.createTask(
-        this.userStore.user.id,
-        this.title3,
-        this.status3,
-        this.tasksStore.maxOrder2 + 1
-      );
-      this.title3 = "";
     },
     startDrag(event, task) {
       event.dataTransfer.dropEffect = "move";
@@ -115,45 +103,63 @@ export default {
       const taskID = event.dataTransfer.getData("taskID");
       this.tasksStore.modifiedStatus(status, taskID);
     },
-    moveTaskUp(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskAnterior = this.tasksStore.filteredStatus0[index - 1]
-      this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
+    startDragColumn(event, column) {
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("columnId", column.id);
+      event.dataTransfer.setData("order", column.order);
+    },
+    async onDropColumn(event, column) {
+      const columnId = Number(event.dataTransfer.getData("columnId"));
+      const columnOrder = Number(event.dataTransfer.getData("order"));
 
+      if (column.order > columnOrder) {
+        this.bonusStore.columns
+          .filter((eachcolumn) => eachcolumn.order <= column.order)
+          .filter((eachcolumn) => eachcolumn.id !== columnId)
+          .forEach(async (eachcolumn) => {
+            await this.bonusStore.modifiedOrderColumn(
+              eachcolumn.order - 1,
+              eachcolumn.id
+            );
+          });
+      } else if (column.order < columnOrder) {
+        this.bonusStore.columns
+          .filter((eachcolumn) => eachcolumn.order >= column.order)
+          .filter((eachcolumn) => eachcolumn.id !== columnId)
+          .forEach(async (eachcolumn) => {
+            await this.bonusStore.modifiedOrderColumn(
+              eachcolumn.order + 1,
+              eachcolumn.id
+            );
+          });
+      }
+      await this.bonusStore.modifiedOrderColumn(column.order, columnId);
+    },
+
+    moveTaskUp(index, task) {
+      const orderActual = { ...task }.order + 0;
+      const taskAnterior = this.tasksStore.getTasksByStatus(task.status)[
+        index - 1
+      ];
+      this.tasksStore.modifiedOrder(taskAnterior.order, task.id);
+      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id);
     },
     moveTaskDown(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskPosterior = this.tasksStore.filteredStatus0[index + 1]
-      this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
+      const orderActual = { ...task }.order + 0;
+      const taskPosterior = this.tasksStore.getTasksByStatus(task.status)[
+        index + 1
+      ];
+      this.tasksStore.modifiedOrder(taskPosterior.order, task.id);
+      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id);
     },
-    moveTaskUp2(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskAnterior = this.tasksStore.filteredStatus1[index - 1]
-      this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
-
+    edit(id) {
+      this.bonusStore.modifiedMainTitle(this.column.mainTitle, id);
+      this.editing = false;
     },
-    moveTaskDown2(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskPosterior = this.tasksStore.filteredStatus1[index + 1]
-      this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
+    deleteElement(id) {
+      this.bonusStore.deleteColumn(id);
     },
-    moveTaskUp3(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskAnterior = this.tasksStore.filteredStatus2[index - 1]
-      this.tasksStore.modifiedOrder(taskAnterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskAnterior.id)
-
-    },
-    moveTaskDown3(index, task) {
-      const orderActual = { ...task }.order + 0
-      const taskPosterior = this.tasksStore.filteredStatus2[index + 1]
-      this.tasksStore.modifiedOrder(taskPosterior.order, task.id)
-      this.tasksStore.modifiedOrder(orderActual, taskPosterior.id)
-    }
   },
   mounted() {
     this.tasksStore.fetchTasks();
@@ -162,6 +168,15 @@ export default {
 </script>
 
 <style scoped>
+.contenedor-global {
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: rgba(1, 1, 1, 0.33);
+  border-width: 2px;
+  margin-bottom: 10px;
+  background-color: white;
+
+}
 button {
   padding: 5px 10px;
   margin: 10px;
@@ -185,6 +200,9 @@ hr {
   height: 3px;
   margin-bottom: 25px;
 }
+.w-90 {
+  width: 80%;
+}
 
 input {
   margin-top: 10px;
@@ -194,7 +212,6 @@ input {
 
 .bg-gris {
   background: #f1f7fe;
-
 }
 
 .divGeneral {
@@ -217,6 +234,7 @@ input {
   .divIndividual {
     width: 30% !important;
     height: 100vh;
+    margin: 0 10px;
   }
 }
 </style>

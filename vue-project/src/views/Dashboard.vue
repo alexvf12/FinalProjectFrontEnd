@@ -1,18 +1,16 @@
 <template>
+ <newColumn />
 
-  <taskColumn />
 
 </template>
 
 <script>
-import taskColumn from "../components/TaskColumn.vue";
-import taskItem from "../components/taskItem.vue";
+import newColumn from "../components/newColumn.vue";
 
 
 export default {
   components: {
-    taskColumn,
-    taskItem,
+    newColumn
   },
 
 

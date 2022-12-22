@@ -217,4 +217,13 @@ label {
    width: 5%;
    height: 1vh;
 }
+@media (min-width: 720px) { 
+img{
+width: 15rem !important;
+}
+.screen-1{
+    width: 40rem;
+    height: fit-content;
+}
+}
 </style>

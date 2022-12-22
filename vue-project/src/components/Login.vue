@@ -8,7 +8,7 @@
                         <ion-icon name="close-outline"></ion-icon>
                     </button>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center ">
                     <img class="w-75 mb-4" src="../../public/logo.png" alt="logo-tool" />
                 </div>
                 <h4 class="">LOG IN</h4>
@@ -98,7 +98,7 @@ export default {
     border-radius: 30px;
     box-shadow: 0 0 2em #e6e9f9;
     width: 85%;
-    height: 85vh;
+    height: fit-content;
 
     /* gap: 2em; */
 }
@@ -219,4 +219,14 @@ label {
     width: 5%;
     height: 1vh;
 }
+
+@media (min-width: 720px) { 
+img{
+width: 15rem !important;
+}
+.screen-1{
+    width: 40rem;
+}
+}
+
 </style>

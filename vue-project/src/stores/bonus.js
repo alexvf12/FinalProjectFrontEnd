@@ -2,34 +2,67 @@ import { defineStore } from "pinia";
 
 import { supabase } from "../supabase";
 
-export default defineStore("items", {
+export default defineStore("bonus", {
   state() {
     return {
-      items: [],
+      columns: [],
     };
   },
 
   actions: {
-    async fetchTasks() {
-      const { data: tasks } = await supabase
-        .from("tasks")
+
+    async fetchColumns() {
+      
+      const { data: columns } = await supabase
+        .from("columns")
         .select("*")
         .order("order", { ascending: true });
-      this.tasks = tasks;
+      this.columns = columns;
     },
-    async createItem(id, title, status, order) {
-      const { data: tasks } = await supabase
+    async createColumn(user_id, mainTitle, order) {
+      const { data: columns } = await supabase
 
-        .from("tasks")
+        .from("columns")
 
-        .insert({ user_id: id, title: title, status: status, order: order})
+        .insert({ user_id:user_id, mainTitle: mainTitle, order:order})
+      
 
-        .order("order", { ascending: true });
-
-      this.tasks = tasks;
-
-      this.fetchTasks();
+      this.fetchColumns();
     },
-},
+    async modifiedOrderColumn(order, id) {
+      const { error } = await supabase
+        .from("columns")
+        .update({ order: order })
+        .eq("id", id);
 
+      this.fetchColumns();
+    },
+
+    async modifiedMainTitle(mainTitle, id) {
+      const { error } = await supabase
+        .from("columns")
+        .update({ mainTitle: mainTitle })
+        .eq("id", id);
+
+      this.fetchColumns();
+    },
+    async deleteColumn(id) {
+      const { error } = await supabase.from("columns").delete().eq("id", id);
+
+      this.fetchColumns();
+    },
+
+  },
+    getters: {
+        getMaxOrderByColumn() {
+          if (this.columns.length === 0) return 0 
+            const map1 = this.columns.map((column) => column.order);
+            console.log(this.columns)
+            console.log(map1)
+            return Math.max(...map1) + 1;
+          },
+          filteredColumns(){
+            
+          }
+      }
 });
