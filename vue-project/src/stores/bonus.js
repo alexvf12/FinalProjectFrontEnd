@@ -10,6 +10,7 @@ export default defineStore("bonus", {
   },
 
   actions: {
+
     async fetchColumns() {
       
       const { data: columns } = await supabase
@@ -35,7 +36,22 @@ export default defineStore("bonus", {
         .eq("id", id);
 
       this.fetchColumns();
-    }
+    },
+
+    async modifiedMainTitle(mainTitle, id) {
+      const { error } = await supabase
+        .from("columns")
+        .update({ mainTitle: mainTitle })
+        .eq("id", id);
+
+      this.fetchColumns();
+    },
+    async deleteColumn(id) {
+      const { error } = await supabase.from("columns").delete().eq("id", id);
+
+      this.fetchColumns();
+    },
+
   },
     getters: {
         getMaxOrderByColumn() {
