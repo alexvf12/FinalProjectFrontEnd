@@ -49,7 +49,7 @@ export default {
 <style>
 
 .background {
-  background-image: url(../../public/Web.png);
+  background-image: url(../../public/web.png);
   height: 25rem;
   background-repeat: no-repeat;
   background-size: contain;
