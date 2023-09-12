@@ -1,20 +1,23 @@
 <template>
-  
-  <nav class="shadow p-3  rounded sticky-top bg-white">
-    <div  class="d-flex justify-content-between div ">
-      <img src="../../public/logo.png" alt="logo-tool" class=" logo"  />
+  <nav class="shadow p-3 rounded sticky-top bg-white">
+    <div class="d-flex justify-content-between div items-center ">
+      <div>
+        <img src="../../public/tool_logo3.png" alt="logo-tool" class="logo" />
+      </div>
 
-      <div class="ul">
-        <ul class="flex list-unstyled">
-          <li v-if="!userStore.user"><button  @click="$emit('add2')" type="button" class="btn btn-outline-warning btn-sm">Log In</button></li>
-          <li v-if="!userStore.user"><button  @click="$emit('add')" type="button" class="btn btn-outline-warning btn-sm">Sign Up</button></li>
-          <li v-if="userStore.user"><button  @click="isLoggedOut()" type="button" class="btn btn-outline-warning btn-sm">Log Out</button></li>
-        </ul>
+      <div>
+        <button v-if="!userStore.user" @click="$emit('add2')" type="button" class="text-sm py-2 px-3 rounded bttn">Log
+          In</button>
+        <button v-if="!userStore.user" @click="$emit('add')" type="button" class="py-2 px-3 rounded bttn">Sign
+          Up</button>
+        <button v-if="userStore.user" @click="isLoggedOut()" type="button" class="py-2 px-3 rounded bttn">Log
+          Out</button>
       </div>
     </div>
   </nav>
-
 </template>
+
+
 
 <script>
 import { mapStores } from "pinia";
@@ -27,59 +30,53 @@ export default {
 
   },
   computed: {
-      ...mapStores(userStore),
-    
+    ...mapStores(userStore),
+
   },
-   methods:{
+  methods: {
 
     isLoggedOut() {
-        this.userStore.logOut();
-        this.$router.push("/")
-   },
-    
-   }
+      this.userStore.logOut();
+      this.$router.push("/")
+    },
+
+  }
 
 }
 
 </script>
 <style scoped>
-nav{
-  height: 6rem;
+
+.bttn {
+  font-size: smaller;
+  margin-top: 1em;
+  margin-right: 1em;
+  background-color: rgba(0, 0, 0, 0.797) ;
+  color: white;
+}
+.bttn:hover {
+  font-size: smaller;
+  margin-top: 1em;
+  margin-right: 1em;
+  background-color: rgba(0, 0, 0, 0.208) ;
+  color: black;
 }
 
-.ul {
-  margin-right: 10px;
+.logo {
+  height: 3.5rem;
 }
 
-.logo{
-  width: 8rem;
-  
-}
+@media (min-width: 720px) {
 
-ul{
-  padding-top: 18px;
-}
-
-.flex{
-  display: flex;
-  align-items: center;
-}
-
-@media (min-width: 720px) { 
-
-nav{
-  height: 10rem;
-}
-.logo{
-  width: fit-content;
-  height: 8rem; 
-} 
-button{
-font-size: 20px;
+  .logo {
+    width: fit-content;
+    height: 4rem;
   }
-  ul{
-  padding-top: 40px;
-}
-}
 
+  ul {
+    padding-top: 10px;
+  }
+
+
+}
 </style>

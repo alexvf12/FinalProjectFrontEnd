@@ -1,5 +1,17 @@
 <template>
-  <section class="background gris2">
+  <section class="auth">
+    <div class="d-flex align-items-center flex-column">
+      <h2 class="lean">LEAN PROJECT MANAGEMENT.</h2>
+      <h2 class="simpli">SIMPLIFIED.</h2>
+      <h4 class="boost">Boost your personal productivity.</h4>
+      <p class="size-1 m-1">The Tool task management board gives you an excellent overview of your current work
+        situation.</p>
+      <p class="size-1">
+        Visualizing work leads to improved productivity.
+      </p>
+    </div>
+  </section>
+  <!--   <section class="background gris2">
     <div class="d-flex align-items-center flex-column">
       <h2 class="lean">LEAN PROJECT MANAGEMENT.</h2>
       <h2 class="simpli">SIMPLIFIED.</h2>
@@ -15,8 +27,7 @@
         Visualizing work leads to improved productivity.</p>
       <img class="tablero img-fluid" src="../../public/captura.png" alt="captura">
     </div>
-  </section>
-
+  </section> -->
 </template>
 
 <script>
@@ -47,6 +58,9 @@ export default {
 </script>
 
 <style>
+.auth {
+  height: 80vh;
+}
 
 .background {
   background-image: url(../../public/web.png);
@@ -59,7 +73,6 @@ export default {
 .lean {
   font-size: 1rem;
   font-weight: 700;
-  margin-top: 20%;
 }
 
 .simpli {
@@ -72,7 +85,6 @@ export default {
 .boost {
   font-weight: 400;
   font-size: 0.7rem;
-  margin-left: 5rem;
   margin-top: 1rem;
 }
 
@@ -95,13 +107,13 @@ export default {
 
 .size-1 {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 
-.tablero{
+.tablero {
   width: 20rem;
-margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 900px) {
@@ -114,13 +126,15 @@ margin-bottom: 1rem;
   .lean {
     font-size: 3rem;
     font-weight: 700;
-    margin-top: 15rem;
+    margin-top: 5rem;
   }
-  .titulo{
-    font-size: 50px!important;
+
+  .titulo {
+    font-size: 50px !important;
   }
-  .color{
-    font-size: 35px!important;
+
+  .color {
+    font-size: 35px !important;
   }
 
   .simpli {
@@ -133,7 +147,6 @@ margin-bottom: 1rem;
   .boost {
     font-weight: 300;
     font-size: 2rem;
-    margin-left: 6rem;
     margin-top: 4rem;
   }
 
@@ -142,16 +155,17 @@ margin-bottom: 1rem;
     height: fit-content;
 
   }
+
   .size-1 {
-  font-size: 22px;
-  font-weight: 300;
-}
+    font-size: 18px;
+    font-weight: 200;
+  }
 
-.tablero{
-  width: 40rem;
-  margin-bottom: 2rem;
+  .tablero {
+    width: 40rem;
+    margin-bottom: 2rem;
 
-}
+  }
 
 }
 
@@ -163,14 +177,13 @@ margin-bottom: 1rem;
   }
 
   .lean {
-    font-size: 3rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-top: 9rem;
+    margin-top: 4rem;
   }
 
   .simpli {
-    font-size: 3rem;
-
+    font-size: 2.5rem;
     font-weight: 500;
     text-decoration: underline;
     text-decoration-color: rgb(229, 255, 0);
@@ -178,8 +191,7 @@ margin-bottom: 1rem;
 
   .boost {
     font-weight: 300;
-    font-size: 2rem;
-    margin-left: 6rem;
+    font-size: 1.5rem;
     margin-top: 2.5rem;
   }
 

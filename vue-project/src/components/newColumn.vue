@@ -1,32 +1,23 @@
 <template>
-  <div class="bg-gris">
-    <button @click="isHidden = !isHidden">
-      <ion-icon name="add-outline"></ion-icon>New column
-    </button>
-    <form
-      v-if="!isHidden"
-      class="text-center card d-flex flex-row justify-content-between align-items-center"
-      action=""
-      @submit.prevent="
-        addNewTitle();
-        isHidden = !isHidden;
-      "
-    >
-      <input
-        v-model="mainTitle"
-        type="text"
-        placeholder="Type a title..."
-        id="inputGroup-sizing-default"
-      />
-      <button class="btn button">
-        <ion-icon name="checkmark-done-outline"></ion-icon>
+  <div>
+    <div>
+      <button @click="isHidden = !isHidden">
+        + New column
       </button>
-    </form>
-  </div>
-  <div
-    class="d-flex flex-column justify-content-start align-items-center bg-gris divGeneral"
-  >
-    <TaskColumn  :column="column" v-for="column in bonusStore.columns"/>
+      <form v-if="!isHidden" class="text-center card d-flex flex-row justify-content-between align-items-center" action=""
+        @submit.prevent="
+          addNewTitle();
+        isHidden = !isHidden;
+        ">
+        <input v-model="mainTitle" type="text" placeholder="Type a title..." id="inputGroup-sizing-default" />
+        <button class="btn button">
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+        </button>
+      </form>
+    </div>
+    <div class="d-flex flex-column justify-content-start align-items-center bg-gris divGeneral">
+      <TaskColumn :column="column" v-for="column in bonusStore.columns" />
+    </div>
   </div>
 
   <!-- EMPIEZA EL ITEM -->
@@ -69,7 +60,7 @@ export default {
 
   mounted() {
     this.bonusStore.fetchColumns();
-    
+
   },
 };
 </script>
@@ -77,10 +68,9 @@ export default {
 <style scoped>
 button {
   padding: 5px 10px;
-  margin: 10px;
-  border-radius: 50px;
-  border: none;
-  background-color: #282a2aac;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #282a2acb;
   color: white;
 }
 
@@ -104,13 +94,7 @@ input {
   border: none;
 }
 
-.bg-gris {
-  background: #f1f7fe;
-}
 
-.divGeneral {
-  background: #f1f7fe;
-}
 
 .card {
   width: 10rem;

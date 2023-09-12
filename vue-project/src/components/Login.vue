@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <div class="d-flex justify-content-center ">
-                    <img class="w-75 mb-4" src="../../public/logo.png" alt="logo-tool" />
+                    <img class="w-75 mb-4" src="../../public/tool_logo3.png" alt="logo-tool" />
                 </div>
                 <h4 class="">LOG IN</h4>
                 <div class="email">
@@ -75,158 +75,161 @@ export default {
 }
 
 .logModal {
-    position: fixed !important;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, .7);
-    z-index: 10000;
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, .7);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 10000;
 }
-
 .signup {
-    display: flex;
-    background: #dde5f4;
-    height: 100vh;
+   display: flex;
+   background: #ffffff;
+   height: 100vh;
 }
 
 .screen-1 {
-    background: #f1f7fe;
-    padding: 2em;
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    box-shadow: 0 0 2em #e6e9f9;
-    width: 85%;
-    height: fit-content;
-
-    /* gap: 2em; */
+   padding: 2em;
+   display: flex;
+   flex-direction: column;
+   border-radius: 30px;
+   box-shadow: 0 0 2em #e6e9f9b2;
+   width: 85%;
+   height: 75vh;
+   
+   /* gap: 2em; */
 }
 
 
 .screen-1 .email {
-    background: white;
-    box-shadow: 0 0 2em #e6e9f9;
-    padding: 0.5em 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-    border-radius: 20px;
-    color: #4d4d4d;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
+   background: white;
+   box-shadow: 0 0 1em #bcbcbc;
+   padding: 0.5em 2rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.2em;
+   border-radius: 20px;
+   color: #4d4d4d;
+   margin-bottom: 1rem;
+   margin-top: 0.5rem;
+
 }
 
 .screen-1 .email input {
-    outline: none;
-    border: none;
-    width: 85%;
+   outline: none;
+   border: none;
+   width: 85%;
 
 }
 
 .screen-1 .email ion-icon {
-    color: #4d4d4d;
-    margin-bottom: -0.2em;
+   color: #4d4d4d;
+   margin-bottom: -0.2em;
 }
 
 .screen-1 .password {
-    background: white;
-    box-shadow: 0 0 2em #e6e9f9;
-    padding: 0.5em 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-    border-radius: 20px;
-    color: #4d4d4d;
-    margin-bottom: 1rem;
-    margin-top: 0.3rem;
+   background: white;
+   box-shadow: 0 0 1em #bcbcbc;
+   padding: 0.5em 2rem;
+   display: flex;
+   flex-direction: column;
+   gap: 0.2em;
+   border-radius: 20px;
+   color: #4d4d4d;
+   margin-bottom: 1rem;
+   margin-top: 0.3rem;
 }
 
 .screen-1 .password input {
-    outline: none;
-    border: none;
-    width: 80%;
+   outline: none;
+   border: none;
+   width: 80%;
 }
 
 .screen-1 .password ion-icon {
-    color: #4d4d4d;
-    margin-bottom: -0.1em;
+   color: #4d4d4d;
+   margin-bottom: -0.1em;
 }
 
 .screen-1 .email ion-icon {
-    color: #4d4d4d;
-    margin-bottom: -0.2em;
+   color: #4d4d4d;
+   margin-bottom: -0.2em;
 }
 
 .screen-1 .login {
-    padding: 1em;
-    background: #3e4684;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-weight: 600;
+   padding: 1em;
+   background: #444444;
+   color: white;
+   border: none;
+   border-radius: 10px;
+   font-weight: 600;
 }
 
 .screen-1 .footer {
-    display: flex;
-    font-size: 0.7em;
-    color: #5e5e5e;
-    justify-content: space-between;
+   display: flex;
+   font-size: 0.7em;
+   color: #5e5e5e;
+   justify-content: space-between;
 }
 
 .screen-1 .footer span {
-    cursor: pointer;
+   cursor: pointer;
 }
 
 button {
-    cursor: pointer;
-    margin-bottom: 1rem;
-    width: 50%;
-    font-size: 0.7rem;
+   cursor: pointer;
+   margin-bottom: 1rem;
+   width: 45%;
+   font-size: 0.7rem;
 }
 
 .email {
-    display: flex;
-    justify-content: flex-start;
+   display: flex;
+   justify-content: flex-start;
 }
 
 h4 {
-    font-size: 1.2rem;
-    margin-left: 0.5rem;
+   font-size: 1rem;
+   margin-left: 0.5rem;
 }
 
 input {
-    font-size: 0.9rem;
+   font-size: 0.9rem;
 }
 
 label {
-    font-size: 0.9rem;
+   font-size: 0.9rem;
 }
 
 .size-xs {
-    font-size: x-small;
+   font-size: x-small;
 }
 
 .size-l {
-    font-size: x-large;
+   font-size: x-large;
 }
 
 .size-xxs {
-    font-size: 0.58rem;
+   font-size: 0.58rem;
 }
 
 .w-5 {
-    width: 5%;
-    height: 1vh;
+   width: 5%;
+   height: 1vh;
+}
+@media (min-width: 720px) { 
+img{
+width: 15rem !important;
+}
+.screen-1{
+    width: 40rem;
+    height: fit-content;
+    height: 85vh;
 }
 
-@media (min-width: 720px) {
-    img {
-        width: 15rem !important;
-    }
-
-    .screen-1 {
-        width: 40rem;
-    }
+button{
+   width: 30%;
+}
 }
 </style>
